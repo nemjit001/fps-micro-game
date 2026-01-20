@@ -1,0 +1,22 @@
+# IDEs
+.idea/
+.vs/
+.vscode/
+
+# General
+[Bb]uild/
+
+# Generated
+*.csproj
+*.sln
+*.slnx
+
+# Unity
+/[Ll]ibrary/
+/[Ll]ogs/
+/[Mm]emoryCaptures/
+/[Oo]bj/
+/[Rr]ecordings/
+/[Tt]emp/
+/[Uu]ser[Ss]ettings/
+*.log
