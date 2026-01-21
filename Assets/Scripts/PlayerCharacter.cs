@@ -7,6 +7,8 @@ public class PlayerCharacter : MonoBehaviour
     [Header("References")]
     [SerializeField]
     Transform _cameraTransform = null;
+    [SerializeField]
+    Camera _playerCamera = null;
 
     [Header("Movement Settings")]
     [SerializeField]
@@ -15,6 +17,14 @@ public class PlayerCharacter : MonoBehaviour
     float _characterMass = 1.0F;
     [SerializeField]
     float _jumpStrength = 1.0F;
+    [SerializeField, Range(0.0F, 1.0F)]
+    float _aimingLookSpeedMultiplier = 0.5F;
+    [SerializeField]
+    float _aimTransitionSpeed = 1.0F;
+    [SerializeField, Range(20.0F, 120.0F)]
+    float _defaultFOV = 60.0F;
+    [SerializeField, Range(20.0F, 120.0F)]
+    float _aimingFOV = 40.0F;
 
     [Header("Input Settings")]
     [SerializeField]
@@ -32,6 +42,15 @@ public class PlayerCharacter : MonoBehaviour
     bool _isGrounded = false;
     Vector3 _gravityVector = Vector3.zero;
     bool _justJumped = false;
+    bool _isAiming = false;
+
+    void OnValidate()
+    {
+        if (_playerCamera != null)
+        {
+            _playerCamera.fieldOfView = _defaultFOV;
+        }
+    }
 
     void Start()
     {
@@ -50,9 +69,10 @@ public class PlayerCharacter : MonoBehaviour
         }
 
         // Apply look rotation to character
+        float aimSpeedMultiplier = _isAiming ? _aimingLookSpeedMultiplier : 1.0F;
         float yLookMultiplier = _invertYLook ? -1.0F : 1.0F;
-        _cameraTransform.Rotate(Vector3.right, yLookMultiplier * _lookSensitivity * _rawLookInput.y);
-        transform.Rotate(Vector3.up, _lookSensitivity * _rawLookInput.x);
+        _cameraTransform.Rotate(Vector3.right, yLookMultiplier * _lookSensitivity * aimSpeedMultiplier * _rawLookInput.y);
+        transform.Rotate(Vector3.up, _lookSensitivity * aimSpeedMultiplier * _rawLookInput.x);
 
         Vector3 euler = _cameraTransform.eulerAngles;
         euler.z = 0;
@@ -72,6 +92,16 @@ public class PlayerCharacter : MonoBehaviour
             _characterController.Move(Vector3.up * 2.0F * GROUND_CHECK_EPSILON);
         }
         _justJumped = false;
+
+        // Apply aiming FOV
+        if (_isAiming)
+        {
+            _playerCamera.fieldOfView = Mathf.Lerp(_playerCamera.fieldOfView, _aimingFOV, _aimTransitionSpeed * Time.deltaTime);
+        }
+        else
+        {
+            _playerCamera.fieldOfView = Mathf.Lerp(_playerCamera.fieldOfView, _defaultFOV, _aimTransitionSpeed * Time.deltaTime);
+        }
 
         // Apply gravity
         if (!_isGrounded)
@@ -114,14 +144,7 @@ public class PlayerCharacter : MonoBehaviour
 
     public void OnAim(InputValue value)
     {
-        if (value.Get<float>() > 0.5F)
-        {
-            //
-        }
-        else
-        {
-            //
-        }
+        _isAiming = value.Get<float>() > 0.5F;
     }
 
     public void OnShoot(InputValue value)
