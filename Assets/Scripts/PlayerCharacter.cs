@@ -1,7 +1,7 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-[RequireComponent(typeof(CharacterController))]
+[RequireComponent(typeof(CharacterController), typeof(WeaponManager))]
 public class PlayerCharacter : MonoBehaviour
 {
     [Header("References")]
@@ -36,6 +36,7 @@ public class PlayerCharacter : MonoBehaviour
     const float GROUND_CHECK_EPSILON = 0.1F;
 
     CharacterController _characterController = null;
+    WeaponManager _weaponManager = null;
     Vector2 _rawMoveInput = Vector2.zero;
     Vector2 _rawLookInput = Vector2.zero;
 
@@ -55,6 +56,7 @@ public class PlayerCharacter : MonoBehaviour
     void Start()
     {
         _characterController = GetComponent<CharacterController>();
+        _weaponManager = GetComponent<WeaponManager>();
         GroundCheck();
     }
 

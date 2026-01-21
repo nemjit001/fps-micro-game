@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 7196650565399843999}
   - component: {fileID: 6948837229739959347}
   - component: {fileID: 149142954131397732}
+  - component: {fileID: 1904729959984117187}
   - component: {fileID: 4727772324818705089}
   m_Layer: 6
   m_Name: PlayerCharacter
@@ -114,6 +115,20 @@ MonoBehaviour:
   _aimingFOV: 40
   _lookSensitivity: 0.75
   _invertYLook: 1
+--- !u!114 &1904729959984117187
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3493020272941732876}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 83f9a969d590cd647b074293c490bdaf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::WeaponManager
+  _cameraTransform: {fileID: 7457293305347597180}
+  _weapon: {fileID: 11400000, guid: 871717a5ffaa8964794897e38b021008, type: 2}
 --- !u!114 &4727772324818705089
 MonoBehaviour:
   m_ObjectHideFlags: 0
