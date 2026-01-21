@@ -13,6 +13,8 @@ public class PlayerCharacter : MonoBehaviour
     float _moveSpeed = 1.0F;
     [SerializeField]
     float _characterMass = 1.0F;
+    [SerializeField]
+    float _jumpStrength = 1.0F;
 
     [Header("Input Settings")]
     [SerializeField]
@@ -29,6 +31,7 @@ public class PlayerCharacter : MonoBehaviour
 
     bool _isGrounded = false;
     Vector3 _gravityVector = Vector3.zero;
+    bool _justJumped = false;
 
     void Start()
     {
@@ -39,7 +42,12 @@ public class PlayerCharacter : MonoBehaviour
     void Update()
     {
         // Check character groundedness
+        bool wasGrounded = _isGrounded;
         GroundCheck();
+        if (wasGrounded != _isGrounded)
+        {
+            Debug.Log($"Grounded {wasGrounded} -> {_isGrounded}");
+        }
 
         // Apply look rotation to character
         float yLookMultiplier = _invertYLook ? -1.0F : 1.0F;
@@ -55,6 +63,15 @@ public class PlayerCharacter : MonoBehaviour
         Vector3 moveDirection = transform.forward * _rawMoveInput.y + transform.right * _rawMoveInput.x;
         Vector3 moveVector = moveDirection * _moveSpeed * Time.deltaTime;
         _characterController.Move(moveVector);
+
+        // Apply jump
+        if (_justJumped && _isGrounded)
+        {
+            _isGrounded = false;
+            _gravityVector = Vector3.up * _jumpStrength;
+            _characterController.Move(Vector3.up * 2.0F * GROUND_CHECK_EPSILON);
+        }
+        _justJumped = false;
 
         // Apply gravity
         if (!_isGrounded)
@@ -78,7 +95,6 @@ public class PlayerCharacter : MonoBehaviour
     public void OnMove(InputValue value)
     {
         _rawMoveInput = value.Get<Vector2>();
-        Debug.Log(_rawMoveInput);
     }
 
     public void OnLook(InputValue value)
@@ -86,13 +102,37 @@ public class PlayerCharacter : MonoBehaviour
         _rawLookInput = value.Get<Vector2>();
     }
 
-    public void OnAim(InputValue value)
+    public void OnJump()
+    {
+        _justJumped = true;
+    }
+
+    public void OnReload()
     {
         //
     }
 
+    public void OnAim(InputValue value)
+    {
+        if (value.Get<float>() > 0.5F)
+        {
+            //
+        }
+        else
+        {
+            //
+        }
+    }
+
     public void OnShoot(InputValue value)
     {
-        //
+        if (value.Get<float>() > 0.5F)
+        {
+            //
+        }
+        else
+        {
+            //
+        }
     }
 }
