@@ -104,8 +104,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::PlayerCharacter
   _cameraTransform: {fileID: 7457293305347597180}
   _moveSpeed: 5
-  _characterMass: 1
-  _jumpStrength: 5
+  _characterMass: 2
+  _jumpStrength: 6
   _lookSensitivity: 0.75
   _invertYLook: 1
 --- !u!1 &4551717935964402162
