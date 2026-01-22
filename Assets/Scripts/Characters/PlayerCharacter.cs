@@ -45,6 +45,8 @@ public class PlayerCharacter : MonoBehaviour
     Vector3 _gravityVector = Vector3.zero;
     bool _justJumped = false;
     bool _isAiming = false;
+    bool _isShooting = false;
+    bool _stoppedShooting = false;
 
     void OnValidate()
     {
@@ -109,6 +111,19 @@ public class PlayerCharacter : MonoBehaviour
             _playerCamera.fieldOfView = Mathf.Lerp(_playerCamera.fieldOfView, _defaultFOV, _aimTransitionSpeed * Time.deltaTime);
         }
 
+        // Shoot weapon
+        if (_isShooting)
+        {
+            _weaponManager.Shoot();
+        }
+        
+        // Mark active weapon as ready when player stops shooting
+        if (_stoppedShooting)
+        {
+            _weaponManager.SetWeaponReady();
+        }
+        _stoppedShooting = false;
+
         // Apply gravity
         if (!_isGrounded)
         {
@@ -162,13 +177,10 @@ public class PlayerCharacter : MonoBehaviour
 
     public void OnShoot(InputValue value)
     {
-        if (value.Get<float>() > 0.5F)
+        _isShooting = value.Get<float>() > 0.5F;
+        if (!_isShooting)
         {
-            _weaponManager.Shoot();
-        }
-        else
-        {
-            //
+            _stoppedShooting = true;
         }
     }
 }

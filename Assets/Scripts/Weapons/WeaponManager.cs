@@ -9,6 +9,7 @@ public class WeaponManager : MonoBehaviour
 
     WeaponVisuals _activeWeaponVisuals = null;
     float _weaponCooldown = 0.0F;
+    bool _weaponReady = true;
 
     void Start()
     {
@@ -22,14 +23,22 @@ public class WeaponManager : MonoBehaviour
 
     public void Shoot()
     {
-        // Only shoot if weapon cooldown allows it :)
-        if (!IsCooldownFinished())
+        // Only shoot if weapon cooldown and ready flag allows it :)
+        if (!IsCooldownFinished() || !_weaponReady)
         {
             return;
         }
         _weaponCooldown = _weapon.WeaponFireCooldown;
+        _weaponReady = false;
+
+        // Automatic weapons are always ready to fire again
+        if (_weapon.isAutomatic)
+        {
+            _weaponReady = true;
+        }
 
         // Spawn projectile for weapon at projectile spawn point
+        // TODO(nemjit001): Pool projectile objects to avoid cost of spawning new projectiles
         Projectile projectile = Instantiate(_weapon.projectile);
         projectile.transform.position = _activeWeaponVisuals.ProjectileSpawnPoint.position;
         projectile.transform.rotation = _activeWeaponVisuals.ProjectileSpawnPoint.rotation;
@@ -48,6 +57,11 @@ public class WeaponManager : MonoBehaviour
                 health.ApplyDamage(_weapon.damage);
             }
         }
+    }
+
+    public void SetWeaponReady()
+    {
+        _weaponReady = true;
     }
 
     private void SpawnWeaponVisuals()
