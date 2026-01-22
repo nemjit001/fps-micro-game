@@ -46,7 +46,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Projectile
   _speed: 200
-  _timeToLive: 5
+  _timeToLive: 1
 --- !u!1 &1732893638375110492
 GameObject:
   m_ObjectHideFlags: 0
