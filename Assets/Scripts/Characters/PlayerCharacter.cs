@@ -1,7 +1,7 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-[RequireComponent(typeof(CharacterController), typeof(WeaponManager))]
+[RequireComponent(typeof(CharacterController), typeof(WeaponManager), typeof(Health))]
 public class PlayerCharacter : MonoBehaviour
 {
     [Header("References")]
@@ -37,6 +37,7 @@ public class PlayerCharacter : MonoBehaviour
 
     CharacterController _characterController = null;
     WeaponManager _weaponManager = null;
+    Health _characterHealth = null;
     Vector2 _rawMoveInput = Vector2.zero;
     Vector2 _rawLookInput = Vector2.zero;
 
@@ -57,6 +58,7 @@ public class PlayerCharacter : MonoBehaviour
     {
         _characterController = GetComponent<CharacterController>();
         _weaponManager = GetComponent<WeaponManager>();
+        _characterHealth = GetComponent<Health>();
         GroundCheck();
     }
 
@@ -117,8 +119,10 @@ public class PlayerCharacter : MonoBehaviour
     private void GroundCheck()
     {
         _isGrounded = false;
+        float checkRadius = _characterController.radius;
         float checkDistance = GROUND_CHECK_EPSILON + 0.5F * _characterController.height;
-        if (Physics.Raycast(transform.position, Vector3.down, out RaycastHit _, checkDistance, ~0))
+        checkDistance -= checkRadius;
+        if (Physics.SphereCast(transform.position, checkRadius, Vector3.down, out RaycastHit _, checkDistance, ~0))
         {
             _isGrounded = true;
             _gravityVector = Vector3.zero;
