@@ -16,6 +16,11 @@ public class WeaponManager : MonoBehaviour
 
     public void Shoot(Transform aimTransform)
     {
+        // Spawn projectile for weapon at projectile spawn point
+        Projectile projectile = Instantiate(_weapon.projectile);
+        projectile.transform.position = _activeWeaponVisuals.ProjectileSpawnPoint.position;
+        projectile.transform.rotation = _activeWeaponVisuals.ProjectileSpawnPoint.rotation;
+
         // Do a simple raycast for hit object detection
         if (Physics.Raycast(aimTransform.position, aimTransform.forward, out RaycastHit hit, Mathf.Infinity, ~0))
         {
@@ -23,7 +28,7 @@ public class WeaponManager : MonoBehaviour
             if (health != null)
             {
                 Debug.Log($"hit something with health! ({hit.transform.root.name})");
-                // TODO(nemjit001): Apply weapon damage to hit health component
+                health.ApplyDamage(_weapon.damage);
             }
         }
     }

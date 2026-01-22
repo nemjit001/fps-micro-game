@@ -291,7 +291,7 @@ GameObject:
   - component: {fileID: 7370407145823841099}
   - component: {fileID: 5792664328648073952}
   m_Layer: 0
-  m_Name: PlayerReticleUI
+  m_Name: Player Reticle UI
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
