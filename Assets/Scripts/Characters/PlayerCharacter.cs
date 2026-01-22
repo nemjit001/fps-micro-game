@@ -4,7 +4,7 @@ using UnityEngine.InputSystem;
 [RequireComponent(typeof(CharacterController), typeof(WeaponManager), typeof(Health))]
 public class PlayerCharacter : MonoBehaviour
 {
-    [Header("References")]
+    [Header("Child Entity References")]
     [SerializeField]
     Transform _cameraFollowTarget = null;
     [SerializeField]
@@ -58,6 +58,9 @@ public class PlayerCharacter : MonoBehaviour
 
     void Start()
     {
+        // Lock player cursor to game window
+        Cursor.lockState = CursorLockMode.Locked;
+
         _characterController = GetComponent<CharacterController>();
         _weaponManager = GetComponent<WeaponManager>();
         _characterHealth = GetComponent<Health>();
@@ -168,6 +171,19 @@ public class PlayerCharacter : MonoBehaviour
     public void OnReload()
     {
         //
+    }
+
+    public void OnCycleWeapon(InputValue value)
+    {
+        if (value.Get<float>() > 0.0F)
+        {
+            _weaponManager.SelectNextWeapon();
+        }
+        
+        if (value.Get<float>() < 0.0F)
+        {
+            _weaponManager.SelectPreviousWeapon();
+        }
     }
 
     public void OnAim(InputValue value)

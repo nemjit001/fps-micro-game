@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using UnityEngine;
 
 public class WeaponManager : MonoBehaviour
@@ -5,15 +6,18 @@ public class WeaponManager : MonoBehaviour
     [SerializeField, Tooltip("The player camera transform is used for aiming and spawning weapon visuals")]
     Transform _cameraTransform = null;
     [SerializeField]
-    WeaponData _weapon = null;
+    List<WeaponData> _weapons = new List<WeaponData>(); // FIXME(nemjit001): Player weapon inventory should be runtime data
 
+    int _activeWeaponidx = 0;
     WeaponVisuals _activeWeaponVisuals = null;
     float _weaponCooldown = 0.0F;
     bool _weaponReady = true;
 
+    private WeaponData ActiveWeapon { get => _weapons[_activeWeaponidx]; }
+
     void Start()
     {
-        SpawnWeaponVisuals();
+        SwitchToWeapon(0);
     }
 
     void Update()
@@ -28,18 +32,18 @@ public class WeaponManager : MonoBehaviour
         {
             return;
         }
-        _weaponCooldown = _weapon.WeaponFireCooldown;
+        _weaponCooldown = ActiveWeapon.WeaponFireCooldown;
         _weaponReady = false;
 
         // Automatic weapons are always ready to fire again
-        if (_weapon.isAutomatic)
+        if (ActiveWeapon.isAutomatic)
         {
             _weaponReady = true;
         }
 
         // Spawn projectile for weapon at projectile spawn point
         // TODO(nemjit001): Pool projectile objects to avoid cost of spawning new projectiles
-        Projectile projectile = Instantiate(_weapon.projectile);
+        Projectile projectile = Instantiate(ActiveWeapon.projectile);
         projectile.transform.position = _activeWeaponVisuals.ProjectileSpawnPoint.position;
         projectile.transform.rotation = _activeWeaponVisuals.ProjectileSpawnPoint.rotation;
 
@@ -54,7 +58,7 @@ public class WeaponManager : MonoBehaviour
             Health health = hit.transform.root.GetComponent<Health>();
             if (health != null)
             {
-                health.ApplyDamage(_weapon.damage);
+                health.ApplyDamage(ActiveWeapon.damage);
             }
         }
     }
@@ -64,15 +68,45 @@ public class WeaponManager : MonoBehaviour
         _weaponReady = true;
     }
 
+    public void SelectNextWeapon()
+    {
+        int weaponIdx = (_activeWeaponidx + 1) % _weapons.Count;
+        SwitchToWeapon(weaponIdx);
+    }
+
+    public void SelectPreviousWeapon()
+    {
+        int weaponIdx = _activeWeaponidx - 1;
+        if (weaponIdx < 0)
+        {
+            weaponIdx = _weapons.Count - 1;
+        }
+
+        SwitchToWeapon(weaponIdx);
+    }
+
+    private void SwitchToWeapon(int weaponIdx)
+    {
+        _weaponCooldown = 0.0F;
+        _weaponReady = true;
+        if (weaponIdx >= 0 && weaponIdx < _weapons.Count)
+        {
+            _activeWeaponidx = weaponIdx;
+        }
+
+        SpawnWeaponVisuals();
+        Debug.Log($"Selected weapon {ActiveWeapon.name}");
+    }
+
     private void SpawnWeaponVisuals()
     {
-        if (_weapon == null)
+        Destroy(_activeWeaponVisuals);
+        if (ActiveWeapon == null)
         {
             return;
         }
 
-        Destroy(_activeWeaponVisuals);
-        _activeWeaponVisuals = Instantiate(_weapon.visuals, _cameraTransform);
+        _activeWeaponVisuals = Instantiate(ActiveWeapon.visuals, _cameraTransform);
     }
 
     private void TickCooldownTimer()

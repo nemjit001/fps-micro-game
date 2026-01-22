@@ -130,7 +130,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::WeaponManager
   _cameraTransform: {fileID: 7457293305347597180}
-  _weapon: {fileID: 11400000, guid: 871717a5ffaa8964794897e38b021008, type: 2}
+  _weapons:
+  - {fileID: 11400000, guid: b5527afdaff96684b8dd56524d02e033, type: 2}
+  - {fileID: 11400000, guid: 871717a5ffaa8964794897e38b021008, type: 2}
 --- !u!114 &4727772324818705089
 MonoBehaviour:
   m_ObjectHideFlags: 0
