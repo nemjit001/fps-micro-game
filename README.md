@@ -10,12 +10,12 @@ This is an FPS micro game to practice implementing a kinematic character control
 
 ## FPS character details
 
-- Kinematic character controller
-    - Sprinting
-    - Crouching
-    - Jumping
-- Weapon system
-    - Shooting
-    - Aiming
-    - Reloading
-    - Weapon switching
+-[ ] Kinematic character controller
+    -[ ] Sprinting
+    -[ ] Crouching
+    -[X] Jumping
+-[ ] Weapon system
+    -[X] Shooting
+    -[X] Aiming
+    -[ ] Reloading
+    -[ ] Weapon switching

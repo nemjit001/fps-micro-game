@@ -16,3 +16,4 @@ MonoBehaviour:
   projectile: {fileID: 26700513179411144, guid: 26ac41d6f87e0894c8629a6afc670070, type: 3}
   damage: 20
   fireRate: 5
+  isAutomatic: 0
