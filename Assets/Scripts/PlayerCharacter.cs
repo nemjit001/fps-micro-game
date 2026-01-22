@@ -76,10 +76,11 @@ public class PlayerCharacter : MonoBehaviour
         _cameraTransform.Rotate(Vector3.right, yLookMultiplier * _lookSensitivity * aimSpeedMultiplier * _rawLookInput.y);
         transform.Rotate(Vector3.up, _lookSensitivity * aimSpeedMultiplier * _rawLookInput.x);
 
-        Vector3 euler = _cameraTransform.eulerAngles;
+        Vector3 euler = _cameraTransform.localEulerAngles;
         euler.z = 0;
+        euler.y = 0;
         euler.x = euler.x < 180.0F ? Mathf.Clamp(euler.x, 0, 80) : Mathf.Clamp(euler.x, 280, 360);
-        _cameraTransform.eulerAngles = euler;
+        _cameraTransform.localEulerAngles = euler;
 
         // Move character
         Vector3 moveDirection = transform.forward * _rawMoveInput.y + transform.right * _rawMoveInput.x;
@@ -153,7 +154,7 @@ public class PlayerCharacter : MonoBehaviour
     {
         if (value.Get<float>() > 0.5F)
         {
-            //
+            _weaponManager.Shoot(_playerCamera.transform);
         }
         else
         {
