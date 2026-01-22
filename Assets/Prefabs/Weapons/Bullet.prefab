@@ -45,7 +45,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 20cae266b94c5154e917e3b8614dec7d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Projectile
-  _speed: 200
+  _speed: 500
   _timeToLive: 1
 --- !u!1 &1732893638375110492
 GameObject:
