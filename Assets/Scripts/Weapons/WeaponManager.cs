@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class WeaponManager : MonoBehaviour
 {
-    [SerializeField]
+    [SerializeField, Tooltip("The player camera transform is used for aiming and spawning weapon visuals")]
     Transform _cameraTransform = null;
     [SerializeField]
     WeaponData _weapon = null;
@@ -20,7 +20,7 @@ public class WeaponManager : MonoBehaviour
         TickCooldownTimer();
     }
 
-    public void Shoot(Transform aimTransform)
+    public void Shoot()
     {
         // Only shoot if weapon cooldown allows it :)
         if (!IsCooldownFinished())
@@ -38,7 +38,7 @@ public class WeaponManager : MonoBehaviour
         // TODO(nemjit001): Play shooting animation
 
         // Do a simple raycast for hit object detection
-        if (Physics.Raycast(aimTransform.position, aimTransform.forward, out RaycastHit hit, Mathf.Infinity, ~0))
+        if (Physics.Raycast(_cameraTransform.position, _cameraTransform.forward, out RaycastHit hit, Mathf.Infinity, ~0))
         {
             // Apply damage from weapon if the hit object has a health component
             // NOTE(nemjit001): We use the root object since colliders may be children of the damagable entity

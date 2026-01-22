@@ -105,7 +105,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8b8a63958a9cf29429244a19dec22ee9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerCharacter
-  _cameraTransform: {fileID: 7457293305347597180}
+  _cameraFollowTarget: {fileID: 7457293305347597180}
   _playerCamera: {fileID: 6592397337982320079}
   _moveSpeed: 5
   _characterMass: 2

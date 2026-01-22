@@ -6,7 +6,7 @@ public class PlayerCharacter : MonoBehaviour
 {
     [Header("References")]
     [SerializeField]
-    Transform _cameraTransform = null;
+    Transform _cameraFollowTarget = null;
     [SerializeField]
     Camera _playerCamera = null;
 
@@ -59,6 +59,7 @@ public class PlayerCharacter : MonoBehaviour
         _characterController = GetComponent<CharacterController>();
         _weaponManager = GetComponent<WeaponManager>();
         _characterHealth = GetComponent<Health>();
+        _characterHealth.OnHealthDepleted += OnHealthDepleted;
         GroundCheck();
     }
 
@@ -75,14 +76,14 @@ public class PlayerCharacter : MonoBehaviour
         // Apply look rotation to character
         float aimSpeedMultiplier = _isAiming ? _aimingLookSpeedMultiplier : 1.0F;
         float yLookMultiplier = _invertYLook ? -1.0F : 1.0F;
-        _cameraTransform.Rotate(Vector3.right, yLookMultiplier * _lookSensitivity * aimSpeedMultiplier * _rawLookInput.y);
+        _cameraFollowTarget.Rotate(Vector3.right, yLookMultiplier * _lookSensitivity * aimSpeedMultiplier * _rawLookInput.y);
         transform.Rotate(Vector3.up, _lookSensitivity * aimSpeedMultiplier * _rawLookInput.x);
 
-        Vector3 euler = _cameraTransform.localEulerAngles;
+        Vector3 euler = _cameraFollowTarget.localEulerAngles;
         euler.z = 0;
         euler.y = 0;
         euler.x = euler.x < 180.0F ? Mathf.Clamp(euler.x, 0, 80) : Mathf.Clamp(euler.x, 280, 360);
-        _cameraTransform.localEulerAngles = euler;
+        _cameraFollowTarget.localEulerAngles = euler;
 
         // Move character
         Vector3 moveDirection = transform.forward * _rawMoveInput.y + transform.right * _rawMoveInput.x;
@@ -129,6 +130,11 @@ public class PlayerCharacter : MonoBehaviour
         }
     }
 
+    private void OnHealthDepleted()
+    {
+        Debug.Log("Owno, the player died :(");
+    }
+
     public void OnMove(InputValue value)
     {
         _rawMoveInput = value.Get<Vector2>();
@@ -158,7 +164,7 @@ public class PlayerCharacter : MonoBehaviour
     {
         if (value.Get<float>() > 0.5F)
         {
-            _weaponManager.Shoot(_playerCamera.transform);
+            _weaponManager.Shoot();
         }
         else
         {
