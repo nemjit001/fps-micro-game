@@ -14,6 +14,8 @@ public class EnemyCharacter : MonoBehaviour
     private void OnHealthDepleted()
     {
         Debug.Log("Owno I died :(");
+        // TODO(nemjit001): Spawn death VFX :)
+
         gameObject.SetActive(false);
         Destroy(gameObject, 1.0F);
     }
