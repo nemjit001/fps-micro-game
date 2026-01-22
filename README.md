@@ -1,6 +1,6 @@
 # FPS Test Micro Game
 
-This is an FPS micro game to test a kinematic character controller for FPS games.
+This is an FPS micro game to practice implementing a kinematic character controller for FPS games.
 
 ## Gameplay loop
 
