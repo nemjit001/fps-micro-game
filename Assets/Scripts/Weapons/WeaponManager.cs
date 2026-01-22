@@ -6,14 +6,14 @@ public class WeaponManager : MonoBehaviour
     [SerializeField, Tooltip("The player camera transform is used for aiming and spawning weapon visuals")]
     Transform _cameraTransform = null;
     [SerializeField]
-    List<WeaponData> _weapons = new List<WeaponData>(); // FIXME(nemjit001): Player weapon inventory should be runtime data
+    List<Weapon> _weapons = new List<Weapon>(); // FIXME(nemjit001): Player weapon inventory should be runtime data
 
     int _activeWeaponidx = 0;
     WeaponVisuals _activeWeaponVisuals = null;
     float _weaponCooldown = 0.0F;
     bool _weaponReady = true;
 
-    private WeaponData ActiveWeapon { get => _weapons[_activeWeaponidx]; }
+    private Weapon ActiveWeapon { get => _weapons[_activeWeaponidx]; }
 
     void Start()
     {
@@ -61,6 +61,14 @@ public class WeaponManager : MonoBehaviour
                 health.ApplyDamage(ActiveWeapon.damage);
             }
         }
+    }
+
+    public void Reload()
+    {
+        // TODO(nemjit001): Reload weapon with correct ammo from player inventory
+        // 1) Check weapon ammo type (scriptable object?)
+        // 2) Check if player inventory contains ammo type (how much does it contain? map AmmoType:int)
+        // 3) Reduce amount in player inventory and set weapon clip contents (+ play reload anim)
     }
 
     public void SetWeaponReady()

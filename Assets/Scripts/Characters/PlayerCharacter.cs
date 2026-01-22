@@ -170,7 +170,7 @@ public class PlayerCharacter : MonoBehaviour
 
     public void OnReload()
     {
-        //
+        _weaponManager.Reload();
     }
 
     public void OnCycleWeapon(InputValue value)

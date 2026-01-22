@@ -1,7 +1,7 @@
 using UnityEngine;
 
-[CreateAssetMenu(fileName = "WeaponData", menuName = "Scriptable Objects/WeaponData")]
-public class WeaponData : ScriptableObject
+[CreateAssetMenu(fileName = "Weapon", menuName = "Scriptable Objects/Weapon")]
+public class Weapon : ScriptableObject
 {
     [Header("Weapon Visuals")]
     [SerializeField]
@@ -13,6 +13,8 @@ public class WeaponData : ScriptableObject
     public float damage = 1.0F;
     [SerializeField, Tooltip("Weapon fire rate in projectiles per second")]
     public float fireRate = 1.0F;
+    [SerializeField, Tooltip("Weapon capacity on reload")]
+    public int ammoCapacity = 0;
     [SerializeField, Tooltip("Automatic weapons do not require the player to release the fire button before shooting again")]
     public bool isAutomatic = false;
 

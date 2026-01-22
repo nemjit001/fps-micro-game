@@ -17,6 +17,6 @@ This is an FPS micro game to practice implementing a kinematic character control
 - [ ] Weapon system
     - [X] Shooting
     - [X] Aiming
-    - [ ] Reloading
+    - [ ] Ammo count & reloading
     - [X] Weapon switching
 - [ ] Enemy wave spawning

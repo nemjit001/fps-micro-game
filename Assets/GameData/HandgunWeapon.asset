@@ -10,10 +10,11 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 78c99c9f41dda38439020ae6a606c831, type: 3}
-  m_Name: RifleWeaponData
+  m_Name: HandgunWeapon
   m_EditorClassIdentifier: Assembly-CSharp::WeaponData
   visuals: {fileID: 1034870715764352660, guid: cf11b586ca1f9a842b3ba182cfcaedc8, type: 3}
   projectile: {fileID: 26700513179411144, guid: 26ac41d6f87e0894c8629a6afc670070, type: 3}
-  damage: 15
-  fireRate: 10
-  isAutomatic: 1
+  damage: 20
+  fireRate: 5
+  isAutomatic: 0
+  ammoCapacity: 15
