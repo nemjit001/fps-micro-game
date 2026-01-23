@@ -17,6 +17,8 @@ public class Weapon : ScriptableObject
     public int ammoCapacity = 0;
     [SerializeField, Tooltip("Automatic weapons do not require the player to release the fire button before shooting again")]
     public bool isAutomatic = false;
+    [SerializeField, Tooltip("The Ammo Type for a weapon determines which shared ammo inventory it will deplete ammo from")]
+    AmmoType ammoType = null;
 
     public float WeaponFireCooldown { get => 1.0F / fireRate; }
 }

@@ -9,6 +9,10 @@ public class Health : MonoBehaviour
     public float CurrentHealth { get => _health; }
     public Action OnHealthDepleted = null;
 
+    /// <summary>
+    /// Apply damage to the stored health value. When the health is depleted the `OnHealthDepleted` callback is invoked.
+    /// </summary>
+    /// <param name="damage"></param>
     public void ApplyDamage(float damage)
     {
         _health -= damage;

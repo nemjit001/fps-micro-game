@@ -25,6 +25,9 @@ public class WeaponManager : MonoBehaviour
         TickCooldownTimer();
     }
 
+    /// <summary>
+    /// Shoot the currently active weapon.
+    /// </summary>
     public void Shoot()
     {
         // Only shoot if weapon cooldown and ready flag allows it :)
@@ -41,14 +44,15 @@ public class WeaponManager : MonoBehaviour
             _weaponReady = true;
         }
 
+        // TODO(nemjit001): Play (spawn?) shooting audio clip
+        // TODO(nemjit001): Play shooting animation
+
+        // NOTE(nemjit001): Weapon hit detection & projectile spawning can be different for weapons (e.g. rifles, shotguns, projectile based weapons)
         // Spawn projectile for weapon at projectile spawn point
         // TODO(nemjit001): Pool projectile objects to avoid cost of spawning new projectiles
         Projectile projectile = Instantiate(ActiveWeapon.projectile);
         projectile.transform.position = _activeWeaponVisuals.ProjectileSpawnPoint.position;
         projectile.transform.rotation = _activeWeaponVisuals.ProjectileSpawnPoint.rotation;
-
-        // TODO(nemjit001): Play (spawn?) shooting audio clip
-        // TODO(nemjit001): Play shooting animation
 
         // Do a simple raycast for hit object detection
         if (Physics.Raycast(_cameraTransform.position, _cameraTransform.forward, out RaycastHit hit, Mathf.Infinity, ~0))
@@ -63,6 +67,9 @@ public class WeaponManager : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// Reload the currently active weapon.
+    /// </summary>
     public void Reload()
     {
         // TODO(nemjit001): Reload weapon with correct ammo from player inventory
@@ -71,17 +78,26 @@ public class WeaponManager : MonoBehaviour
         // 3) Reduce amount in player inventory and set weapon clip contents (+ play reload anim)
     }
 
+    /// <summary>
+    /// Set the currently active weapon ready state.
+    /// </summary>
     public void SetWeaponReady()
     {
         _weaponReady = true;
     }
 
+    /// <summary>
+    /// Select the next weapon in the weapon inventory.
+    /// </summary>
     public void SelectNextWeapon()
     {
         int weaponIdx = (_activeWeaponidx + 1) % _weapons.Count;
         SwitchToWeapon(weaponIdx);
     }
 
+    /// <summary>
+    /// Select the previous weapon in the weapon inventory.
+    /// </summary>
     public void SelectPreviousWeapon()
     {
         int weaponIdx = _activeWeaponidx - 1;
@@ -93,6 +109,10 @@ public class WeaponManager : MonoBehaviour
         SwitchToWeapon(weaponIdx);
     }
 
+    /// <summary>
+    /// Switch to a given weapon index in the inventory.
+    /// </summary>
+    /// <param name="weaponIdx"></param>
     private void SwitchToWeapon(int weaponIdx)
     {
         _weaponCooldown = 0.0F;
@@ -106,6 +126,9 @@ public class WeaponManager : MonoBehaviour
         Debug.Log($"Selected weapon {ActiveWeapon.name}");
     }
 
+    /// <summary>
+    /// Spawn the active weapon visuals.
+    /// </summary>
     private void SpawnWeaponVisuals()
     {
         Destroy(_activeWeaponVisuals);
@@ -117,6 +140,9 @@ public class WeaponManager : MonoBehaviour
         _activeWeaponVisuals = Instantiate(ActiveWeapon.visuals, _cameraTransform);
     }
 
+    /// <summary>
+    /// Tick the weapon cooldown timer.
+    /// </summary>
     private void TickCooldownTimer()
     {
         if (!IsCooldownFinished())
@@ -125,6 +151,10 @@ public class WeaponManager : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// Check if the weapon cooldown timer is finished.
+    /// </summary>
+    /// <returns></returns>
     private bool IsCooldownFinished()
     {
         return _weaponCooldown <= 0.0F;
