@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 719484153190148092}
   - component: {fileID: 4843884838585807049}
   - component: {fileID: 3000386884558177590}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: TEMP
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -101,7 +101,7 @@ GameObject:
   - component: {fileID: 7437264910517316939}
   - component: {fileID: 8706413028709625705}
   - component: {fileID: 932387105585842436}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: AmmoPickup
   m_TagString: Untagged
   m_Icon: {fileID: 0}
