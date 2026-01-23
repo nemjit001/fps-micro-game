@@ -86,6 +86,7 @@ public class WeaponManager : MonoBehaviour
         AmmoType ammoType = ActiveWeapon.ammoType;
         if (_inventoryManager.GetHeldAmmoCount(ammoType) == 0) // Empty ammo inventory :(
         {
+            // TODO(nemjit001): Play no ammo animation
             return;
         }
 
