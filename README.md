@@ -28,3 +28,4 @@ This is an FPS micro game to practice implementing a kinematic character control
 - [ ] Main menu scene
 - [ ] Game over scene (win/lose condition)
 - [ ] Basic gameplay map
+- [ ] Pause screen
