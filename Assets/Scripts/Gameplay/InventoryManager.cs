@@ -40,6 +40,11 @@ public class InventoryManager : MonoBehaviour
     /// <returns></returns>
     public int GetHeldAmmoCount(AmmoType ammoType)
     {
+        if (!_inventory.ContainsKey(ammoType))
+        {
+            return 0;
+        }
+
         return _inventory[ammoType];
     }
 
@@ -51,21 +56,21 @@ public class InventoryManager : MonoBehaviour
     /// <returns>Actual available ammunition count.</returns>
     public int ReduceHeldAmmoCount(AmmoType ammoType, int wanted)
     {
-        if (_inventory.ContainsKey(ammoType))
+        if (!_inventory.ContainsKey(ammoType))
         {
-            if (_inventory[ammoType] <= wanted)
-            {
-                int count = _inventory[ammoType];
-                _inventory[ammoType] = 0;
-                return count;
-            }
-            else
-            {
-                _inventory[ammoType] -= wanted;
-                return wanted;
-            }
+            return 0;
         }
 
-        return 0;
+        if (_inventory[ammoType] <= wanted)
+        {
+            int count = _inventory[ammoType];
+            _inventory[ammoType] = 0;
+            return count;
+        }
+        else
+        {
+            _inventory[ammoType] -= wanted;
+            return wanted;
+        }
     }
 }

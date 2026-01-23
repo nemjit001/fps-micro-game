@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+[RequireComponent(typeof(InventoryManager))]
 public class WeaponManager : MonoBehaviour
 {
     [SerializeField, Tooltip("The player camera transform is used for aiming and spawning weapon visuals")]
@@ -8,6 +9,7 @@ public class WeaponManager : MonoBehaviour
     [SerializeField]
     List<Weapon> _weapons = new List<Weapon>(); // FIXME(nemjit001): Player weapon inventory should be runtime data
 
+    InventoryManager _inventoryManager = null;
     int _activeWeaponidx = 0;
     WeaponVisuals _activeWeaponVisuals = null;
     float _weaponCooldown = 0.0F;
@@ -17,6 +19,7 @@ public class WeaponManager : MonoBehaviour
 
     void Start()
     {
+        _inventoryManager = GetComponent<InventoryManager>();
         SwitchToWeapon(0);
     }
 
@@ -37,6 +40,14 @@ public class WeaponManager : MonoBehaviour
         }
         _weaponCooldown = ActiveWeapon.WeaponFireCooldown;
         _weaponReady = false;
+
+        // Check if weapon is empty and reduce ammo count
+        if (ActiveWeapon.ammoCount == 0)
+        {
+            // TODO(nemjit001): Play empty weapon animation and audio clip
+            return;
+        }
+        ActiveWeapon.ammoCount -= 1;
 
         // Automatic weapons are always ready to fire again
         if (ActiveWeapon.isAutomatic)
@@ -72,10 +83,14 @@ public class WeaponManager : MonoBehaviour
     /// </summary>
     public void Reload()
     {
-        // TODO(nemjit001): Reload weapon with correct ammo from player inventory
-        // 1) Check weapon ammo type (scriptable object?)
-        // 2) Check if player inventory contains ammo type (how much does it contain? map AmmoType:int)
-        // 3) Reduce amount in player inventory and set weapon clip contents (+ play reload anim)
+        AmmoType ammoType = ActiveWeapon.ammoType;
+        if (_inventoryManager.GetHeldAmmoCount(ammoType) == 0) // Empty ammo inventory :(
+        {
+            return;
+        }
+
+        // TODO(nemjit001): Play reload animation
+        ActiveWeapon.ammoCount = _inventoryManager.ReduceHeldAmmoCount(ammoType, ActiveWeapon.ammoCapacity);
     }
 
     /// <summary>

@@ -17,5 +17,7 @@ MonoBehaviour:
   damage: 20
   fireRate: 5
   ammoCapacity: 15
+  initialAmmoCount: 15
   isAutomatic: 0
   ammoType: {fileID: 11400000, guid: f0c0fda9388331da7a21a3d2b1f70d78, type: 2}
+  ammoCount: 0
