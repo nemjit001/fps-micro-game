@@ -365,6 +365,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerUIManager
   _characterHealth: {fileID: 4727772324818705089}
+  _weaponManager: {fileID: 1904729959984117187}
+  _inventoryManager: {fileID: 3774543859457641983}
 --- !u!1 &8533434452942104439
 GameObject:
   m_ObjectHideFlags: 0

@@ -15,7 +15,7 @@ public class WeaponManager : MonoBehaviour
     float _weaponCooldown = 0.0F;
     bool _weaponReady = true;
 
-    private Weapon ActiveWeapon { get => _weapons[_activeWeaponidx]; }
+    public Weapon ActiveWeapon { get => _weapons[_activeWeaponidx]; }
 
     void Start()
     {
@@ -91,7 +91,9 @@ public class WeaponManager : MonoBehaviour
         }
 
         // TODO(nemjit001): Play reload animation
-        ActiveWeapon.ammoCount = _inventoryManager.ReduceHeldAmmoCount(ammoType, ActiveWeapon.ammoCapacity);
+        int wanted = ActiveWeapon.ammoCapacity - ActiveWeapon.ammoCount;
+        ActiveWeapon.ammoCount += _inventoryManager.ReduceHeldAmmoCount(ammoType, wanted);
+        Debug.Assert(ActiveWeapon.ammoCount <= ActiveWeapon.ammoCapacity, "Ammo count for weapon is larger than capacity!");
     }
 
     /// <summary>
