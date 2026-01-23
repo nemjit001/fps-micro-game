@@ -14,9 +14,17 @@ This is an FPS micro game to practice implementing a kinematic character control
     - [ ] Sprinting
     - [ ] Crouching
     - [X] Jumping
-- [ ] Weapon system
+- [X] Weapon system
     - [X] Shooting
     - [X] Aiming
-    - [ ] Ammo count & reloading
+    - [X] Ammo count & reloading
     - [X] Weapon switching
+
+## Game details
+
 - [ ] Enemy wave spawning
+    - [ ] Enemy chasing player (damage on touch)
+- [ ] Ammo pickup (re)spawning
+- [ ] Main menu scene
+- [ ] Game over scene (win/lose condition)
+- [ ] Basic gameplay map
