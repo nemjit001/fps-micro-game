@@ -102,7 +102,7 @@ GameObject:
   - component: {fileID: 8706413028709625705}
   - component: {fileID: 932387105585842436}
   m_Layer: 2
-  m_Name: AmmoPickup
+  m_Name: HandgunAmmoPickup
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -157,4 +157,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 648397c1050ea0b40a53fd4aeac2431e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: '::'
-  ammoPickup: {fileID: 0}
+  ammoPickup: {fileID: 11400000, guid: 8bb4850cb4219fb2f81bbcf4cd012fb3, type: 2}
