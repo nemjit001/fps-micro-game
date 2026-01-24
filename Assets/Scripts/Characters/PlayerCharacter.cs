@@ -202,4 +202,12 @@ public class PlayerCharacter : MonoBehaviour
             _stoppedShooting = true;
         }
     }
+
+    public void OnPause()
+    {
+        if (!PauseManager.Instance.IsPaused)
+        {
+            PauseManager.Instance.PauseGame();
+        }
+    }
 }
