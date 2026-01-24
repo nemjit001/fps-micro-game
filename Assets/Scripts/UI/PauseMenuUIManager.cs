@@ -1,9 +1,11 @@
+using System;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UIElements;
 
 public class PauseMenuUIManager : MonoBehaviour
 {
+    public Action OnUnpause = null;
     Button _continueButton = null;
     Button _quitButton = null;
 
@@ -25,7 +27,7 @@ public class PauseMenuUIManager : MonoBehaviour
 
     private void OnPressContinue()
     {
-        PauseManager.Instance.UnpauseGame();
+        OnUnpause();
     }
 
     private void OnPressQuit()

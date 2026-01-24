@@ -35,6 +35,7 @@ public class PlayerCharacter : MonoBehaviour
     const float GRAVITY_ACCELERATION = 9.81F;
     const float GROUND_CHECK_EPSILON = 0.1F;
 
+    PlayerInput _playerInput = null;
     CharacterController _characterController = null;
     WeaponManager _weaponManager = null;
     Health _characterHealth = null;
@@ -60,7 +61,9 @@ public class PlayerCharacter : MonoBehaviour
     {
         // Lock player cursor to game window
         Cursor.lockState = CursorLockMode.Locked;
+        PauseManager.Instance.UIManager.OnUnpause += OnUnpause;
 
+        _playerInput = GetComponent<PlayerInput>();
         _characterController = GetComponent<CharacterController>();
         _weaponManager = GetComponent<WeaponManager>();
         _characterHealth = GetComponent<Health>();
@@ -207,7 +210,19 @@ public class PlayerCharacter : MonoBehaviour
     {
         if (!PauseManager.Instance.IsPaused)
         {
+            Cursor.lockState = CursorLockMode.None;
             PauseManager.Instance.PauseGame();
+            _playerInput.SwitchCurrentActionMap("Paused");
+        }
+    }
+
+    public void OnUnpause()
+    {
+        if (PauseManager.Instance.IsPaused)
+        {
+            Cursor.lockState = CursorLockMode.Locked;
+            PauseManager.Instance.UnpauseGame();
+            _playerInput.SwitchCurrentActionMap("Gameplay");
         }
     }
 }

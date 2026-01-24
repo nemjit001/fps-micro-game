@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 public class PauseManager : MonoBehaviour
@@ -11,6 +12,8 @@ public class PauseManager : MonoBehaviour
     {
         get => _instance;
     }
+
+    public PauseMenuUIManager UIManager { get => _pauseMenuUI; }
 
     public bool IsPaused { get => Time.timeScale == 0.0F; }
 
