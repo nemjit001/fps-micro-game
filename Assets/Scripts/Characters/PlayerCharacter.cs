@@ -28,9 +28,7 @@ public class PlayerCharacter : MonoBehaviour
 
     [Header("Input Settings")]
     [SerializeField]
-    float _lookSensitivity = 0.5F;
-    [SerializeField]
-    bool _invertYLook = false;
+    PlayerInputSettings _inputSettings = null;
 
     const float GRAVITY_ACCELERATION = 9.81F;
     const float GROUND_CHECK_EPSILON = 0.1F;
@@ -88,9 +86,9 @@ public class PlayerCharacter : MonoBehaviour
 
         // Apply look rotation to character
         float aimSpeedMultiplier = _isAiming ? _aimingLookSpeedMultiplier : 1.0F;
-        float yLookMultiplier = _invertYLook ? -1.0F : 1.0F;
-        _cameraFollowTarget.Rotate(Vector3.right, yLookMultiplier * _lookSensitivity * aimSpeedMultiplier * _rawLookInput.y);
-        transform.Rotate(Vector3.up, _lookSensitivity * aimSpeedMultiplier * _rawLookInput.x);
+        float yLookMultiplier = _inputSettings.invertYLook ? -1.0F : 1.0F;
+        _cameraFollowTarget.Rotate(Vector3.right, yLookMultiplier * _inputSettings.lookSensitivity * aimSpeedMultiplier * _rawLookInput.y);
+        transform.Rotate(Vector3.up, _inputSettings.lookSensitivity * aimSpeedMultiplier * _rawLookInput.x);
 
         Vector3 euler = _cameraFollowTarget.localEulerAngles;
         euler.z = 0;
