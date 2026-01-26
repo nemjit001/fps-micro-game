@@ -23,7 +23,7 @@ This is an FPS micro game to practice implementing a kinematic character control
 ## Game details
 
 - [ ] Enemy wave spawning
-    - [ ] Enemy chasing player (damage on touch)
+- [ ] Enemy chasing player (damage on touch)
 - [ ] Ammo pickup (re)spawning
 - [X] Main menu scene
 - [X] Game over scene (win/lose condition)
