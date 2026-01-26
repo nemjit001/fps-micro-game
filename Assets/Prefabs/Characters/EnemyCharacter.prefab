@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 2164287665999567572}
   - component: {fileID: 7069301969595752000}
   - component: {fileID: 1524405069548999007}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Cube
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -124,7 +124,7 @@ GameObject:
   - component: {fileID: 469564849223641550}
   - component: {fileID: 5485925654571622008}
   - component: {fileID: 1695327164376869493}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Capsule
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -237,7 +237,7 @@ GameObject:
   - component: {fileID: 1821645015069373042}
   - component: {fileID: 7902391951212131845}
   - component: {fileID: 810741477971659939}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: EnemyCharacter
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -273,6 +273,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0c4eef4aee4c8a54f83a8f6e53bf33cb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::EnemyCharacter
+  _playerRuntimeSet: {fileID: 11400000, guid: 30d54eafee55404f180c8c960f576964, type: 2}
   _enemyRuntimeSet: {fileID: 11400000, guid: 98425af59a36efd33a62bc1a2c47b560, type: 2}
 --- !u!114 &810741477971659939
 MonoBehaviour:

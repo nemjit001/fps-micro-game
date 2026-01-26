@@ -1,9 +1,11 @@
-using Unity.VisualScripting;
 using UnityEngine;
 
 [RequireComponent(typeof(Health))]
 public class EnemyCharacter : MonoBehaviour
 {
+    [Header("Runtime Data")]
+    [SerializeField]
+    PlayerRuntimeSet _playerRuntimeSet = null;
     [SerializeField]
     EnemyRuntimeSet _enemyRuntimeSet = null;
 
@@ -20,6 +22,11 @@ public class EnemyCharacter : MonoBehaviour
     void OnDestroy()
     {
         _enemyRuntimeSet.Remove(this);
+    }
+
+    void Update()
+    {
+        // TODO(nemjit001): Set navmesh target to closest player position using player runtime set
     }
 
     private void OnHealthDepleted()

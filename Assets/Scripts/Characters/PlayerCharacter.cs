@@ -4,6 +4,10 @@ using UnityEngine.InputSystem;
 [RequireComponent(typeof(CharacterController), typeof(WeaponManager), typeof(Health))]
 public class PlayerCharacter : MonoBehaviour
 {
+    [Header("Runtime Data")]
+    [SerializeField]
+    PlayerRuntimeSet _playerRuntimeSet = null;
+
     [Header("Child Entity References")]
     [SerializeField]
     Transform _cameraFollowTarget = null;
@@ -67,10 +71,14 @@ public class PlayerCharacter : MonoBehaviour
         _characterHealth = GetComponent<Health>();
         _characterHealth.OnHealthDepleted += OnHealthDepleted;
         GroundCheck();
+
+        // Add player to runtime set
+        _playerRuntimeSet.Add(this);
     }
 
     void OnDestroy()
     {
+        _playerRuntimeSet.Remove(this);
         Cursor.lockState = CursorLockMode.None;
     }
 

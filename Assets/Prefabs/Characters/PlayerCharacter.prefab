@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 1904729959984117187}
   - component: {fileID: 3774543859457641983}
   - component: {fileID: 4727772324818705089}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: PlayerCharacter
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -107,6 +107,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8b8a63958a9cf29429244a19dec22ee9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerCharacter
+  _playerRuntimeSet: {fileID: 11400000, guid: 30d54eafee55404f180c8c960f576964, type: 2}
   _cameraFollowTarget: {fileID: 7457293305347597180}
   _playerCamera: {fileID: 6592397337982320079}
   _moveSpeed: 5
@@ -170,7 +171,7 @@ GameObject:
   - component: {fileID: 6592397337982320079}
   - component: {fileID: 7375606715736443662}
   - component: {fileID: 5849826538075438194}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Player Camera
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -306,7 +307,7 @@ GameObject:
   - component: {fileID: 9008512465181779963}
   - component: {fileID: 7242286818967682699}
   - component: {fileID: 7254766509794399798}
-  m_Layer: 5
+  m_Layer: 6
   m_Name: Player UI
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -376,7 +377,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7370407145823841099}
   - component: {fileID: 5792664328648073952}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Player Reticle UI
   m_TagString: Untagged
   m_Icon: {fileID: 0}
