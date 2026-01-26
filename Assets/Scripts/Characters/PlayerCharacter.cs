@@ -71,6 +71,11 @@ public class PlayerCharacter : MonoBehaviour
         GroundCheck();
     }
 
+    void OnDestroy()
+    {
+        Cursor.lockState = CursorLockMode.None;
+    }
+
     void Update()
     {
         // Check character groundedness
