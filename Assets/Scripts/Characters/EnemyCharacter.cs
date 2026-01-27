@@ -1,6 +1,7 @@
 using UnityEngine;
+using UnityEngine.AI;
 
-[RequireComponent(typeof(Health))]
+[RequireComponent(typeof(NavMeshAgent), typeof(Health))]
 public class EnemyCharacter : MonoBehaviour
 {
     [Header("Runtime Data")]
@@ -9,10 +10,12 @@ public class EnemyCharacter : MonoBehaviour
     [SerializeField]
     EnemyRuntimeSet _enemyRuntimeSet = null;
 
+    NavMeshAgent _navMeshAgent = null;
     Health _characterHealth = null;
 
     void Start()
     {
+        _navMeshAgent = GetComponent<NavMeshAgent>();
         _characterHealth = GetComponent<Health>();
         _characterHealth.OnHealthDepleted += OnHealthDepleted;
 
@@ -26,7 +29,10 @@ public class EnemyCharacter : MonoBehaviour
 
     void Update()
     {
-        // TODO(nemjit001): Set navmesh target to closest player position using player runtime set
+        // TODO(nemjit001): Select single player character and chase
+        // Might be fun if only on seeing player they get chased, otherwise patrol random positions in the navmesh
+        PlayerCharacter target = _playerRuntimeSet.items[0];
+        _navMeshAgent.destination = target.transform.position;
     }
 
     private void OnHealthDepleted()
