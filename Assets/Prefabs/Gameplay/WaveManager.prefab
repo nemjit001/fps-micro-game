@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &2511737799144603375
+--- !u!1 &8756431854229895352
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -8,41 +8,44 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 4001375617848578581}
-  - component: {fileID: 7135258483843175744}
+  - component: {fileID: 3984950856992225101}
+  - component: {fileID: 2882224565835352007}
   m_Layer: 0
-  m_Name: GameManager
+  m_Name: WaveManager
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &4001375617848578581
+--- !u!4 &3984950856992225101
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2511737799144603375}
+  m_GameObject: {fileID: 8756431854229895352}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: -0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &7135258483843175744
+--- !u!114 &2882224565835352007
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2511737799144603375}
+  m_GameObject: {fileID: 8756431854229895352}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 654c2841f3a9a04459dc14269a153197, type: 3}
+  m_Script: {fileID: 11500000, guid: 9eebbced6987673439ee8d57428409c3, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::NewMonoBehaviourScript
-  _playerCharacter: {fileID: 149142954131397732, guid: b136d1e110eed303c81c174b6d907e52, type: 3}
-  _playerSpawnPoints: []
+  m_EditorClassIdentifier: Assembly-CSharp::WaveManager
+  _enemyRuntimeSet: {fileID: 11400000, guid: 98425af59a36efd33a62bc1a2c47b560, type: 2}
+  _waveCount: 1
+  _enemiesPerWave: 1
+  _enemyCharacter: {fileID: 7902391951212131845, guid: 474a7d416bcfdd845ad0646737b92e1c, type: 3}
+  _enemySpawnPoints: []
