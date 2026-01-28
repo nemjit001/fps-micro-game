@@ -8,11 +8,18 @@ public class GameManager : MonoBehaviour
     [Header("Game Settings")]
     [SerializeField]
     float _gameOverTimeout = 1.0F;
+
     [Header("Player Settings")]
     [SerializeField]
     PlayerCharacter _playerCharacter = null;
     [SerializeField]
     List<Transform> _playerSpawnPoints = new List<Transform>();
+
+    [Header("Game Data")]
+    [SerializeField]
+    PlayerRuntimeSet _playerRuntimeSet = null;
+    [SerializeField]
+    WaveManager _waveManager = null;
 
     bool _gameFinished = false;
 
@@ -44,7 +51,7 @@ public class GameManager : MonoBehaviour
 
     private bool IsGameOver()
     {
-        return false;
+        return _waveManager.WavesFinished() || _playerRuntimeSet.items.Count == 0;
     }
 
     private IEnumerator OnGameOverCoroutine()

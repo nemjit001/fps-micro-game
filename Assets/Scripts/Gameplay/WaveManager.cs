@@ -36,7 +36,7 @@ public class WaveManager : MonoBehaviour
         }
     }
 
-    private bool WavesFinished()
+    public bool WavesFinished()
     {
         return _waveCounter > _waveCount;
     }
