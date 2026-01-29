@@ -10,6 +10,10 @@ public class EnemyCharacter : MonoBehaviour
     [SerializeField]
     EnemyRuntimeSet _enemyRuntimeSet = null;
 
+    [Header("Child Entity References")]
+    [SerializeField]
+    Animator _animator = null;
+
     NavMeshAgent _navMeshAgent = null;
     Health _characterHealth = null;
 
@@ -37,6 +41,9 @@ public class EnemyCharacter : MonoBehaviour
         // TODO(nemjit001): If within range of attack (check by collider) disable navigating and play attack anims
         PlayerCharacter target = _playerRuntimeSet.items[0];
         _navMeshAgent.destination = target.transform.position;
+
+        // Set animation state :)
+        _animator.SetBool("IsMoving", !_navMeshAgent.isStopped);
     }
 
     private void OnHealthDepleted()
