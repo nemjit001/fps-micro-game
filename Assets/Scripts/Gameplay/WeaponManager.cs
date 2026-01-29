@@ -155,7 +155,11 @@ public class WeaponManager : MonoBehaviour
     /// </summary>
     private void SpawnWeaponVisuals()
     {
-        Destroy(_activeWeaponVisuals);
+        if (_activeWeaponVisuals != null)
+        {
+            Destroy(_activeWeaponVisuals.gameObject);
+        }
+
         if (ActiveWeapon == null)
         {
             return;
