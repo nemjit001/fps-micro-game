@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 78c99c9f41dda38439020ae6a606c831, type: 3}
   m_Name: RifleWeapon
   m_EditorClassIdentifier: Assembly-CSharp::WeaponData
-  visuals: {fileID: 1034870715764352660, guid: cf11b586ca1f9a842b3ba182cfcaedc8, type: 3}
+  visuals: {fileID: 1034870715764352660, guid: 618bdea0ed6a62e71ba0650bf7ef8899, type: 3}
   projectile: {fileID: 26700513179411144, guid: 26ac41d6f87e0894c8629a6afc670070, type: 3}
   damage: 15
   fireRate: 10
@@ -20,4 +20,4 @@ MonoBehaviour:
   initialAmmoCount: 30
   isAutomatic: 1
   ammoType: {fileID: 11400000, guid: 2e3e11d9d63b9bdd893b0f3a5a4f5d1e, type: 2}
-  ammoCount: 0
+  ammoCount: 30

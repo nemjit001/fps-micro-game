@@ -57,7 +57,7 @@ public class GameManager : MonoBehaviour
     private IEnumerator OnGameOverCoroutine()
     {
         _gameFinished = true;
-        yield return new WaitForSeconds(_gameOverTimeout);
+        yield return new WaitForSecondsRealtime(_gameOverTimeout);
         SceneManager.LoadSceneAsync("GameOverScene", LoadSceneMode.Single);
     }
 }
