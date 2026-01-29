@@ -31,6 +31,7 @@ public class EnemyCharacter : MonoBehaviour
     {
         // TODO(nemjit001): Select single player character and chase
         // Might be fun if only on seeing player they get chased, otherwise patrol random positions in the navmesh
+        // TODO(nemjit001): If within range of attack (check by collider) disable navigating and play attack anims
         PlayerCharacter target = _playerRuntimeSet.items[0];
         _navMeshAgent.destination = target.transform.position;
     }
