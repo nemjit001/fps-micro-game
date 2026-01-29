@@ -128,7 +128,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: f60a0386cbbfa4582a85051cbcec48dc, type: 3}
       propertyPath: m_Name
-      value: blaster-n
+      value: Blaster Rifle
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

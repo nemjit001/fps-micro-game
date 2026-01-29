@@ -160,7 +160,8 @@ public class PlayerCharacter : MonoBehaviour
 
         int mask = LayerMask.GetMask("Ignore Raycast");
         mask = ~mask; // We want everything BUT the ignore raycast layer
-        if (Physics.SphereCast(transform.position, checkRadius, Vector3.down, out RaycastHit _, checkDistance, mask))
+        Vector3 origin = transform.position + _characterController.center;
+        if (Physics.SphereCast(origin, checkRadius, Vector3.down, out RaycastHit _, checkDistance, mask))
         {
             _isGrounded = true;
             _gravityVector = Vector3.zero;
