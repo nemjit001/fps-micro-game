@@ -59,6 +59,11 @@ public class PlayerCharacter : MonoBehaviour
         }
     }
 
+    void Awake()
+    {
+        _playerRuntimeSet.Add(this);
+    }
+
     void Start()
     {
         // Lock player cursor to game window
@@ -71,9 +76,6 @@ public class PlayerCharacter : MonoBehaviour
         _characterHealth = GetComponent<Health>();
         _characterHealth.OnHealthDepleted += OnHealthDepleted;
         GroundCheck();
-
-        // Add player to runtime set
-        _playerRuntimeSet.Add(this);
     }
 
     void OnDestroy()

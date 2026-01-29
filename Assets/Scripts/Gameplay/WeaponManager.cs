@@ -19,6 +19,12 @@ public class WeaponManager : MonoBehaviour
 
     void Start()
     {
+        // Set initial state for each weapon
+        foreach (var weapon in _weapons)
+        {
+            weapon.Initialize();
+        }
+
         _inventoryManager = GetComponent<InventoryManager>();
         SwitchToWeapon(0);
     }

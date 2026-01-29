@@ -13,13 +13,16 @@ public class EnemyCharacter : MonoBehaviour
     NavMeshAgent _navMeshAgent = null;
     Health _characterHealth = null;
 
+    void Awake()
+    {
+        _enemyRuntimeSet.Add(this);        
+    }
+
     void Start()
     {
         _navMeshAgent = GetComponent<NavMeshAgent>();
         _characterHealth = GetComponent<Health>();
         _characterHealth.OnHealthDepleted += OnHealthDepleted;
-
-        _enemyRuntimeSet.Add(this);
     }
 
     void OnDestroy()

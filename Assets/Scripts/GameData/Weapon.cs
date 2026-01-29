@@ -30,7 +30,10 @@ public class Weapon : ScriptableObject
         initialAmmoCount = Mathf.Clamp(initialAmmoCount, 0, ammoCapacity);
     }
 
-    void OnEnable()
+    /// <summary>
+    /// Initialize the weapon state.
+    /// </summary>
+    public void Initialize()
     {
         ammoCount = initialAmmoCount;
     }
