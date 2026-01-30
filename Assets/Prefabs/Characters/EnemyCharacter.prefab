@@ -95,7 +95,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::EnemyCharacter
   _enemyRuntimeSet: {fileID: 11400000, guid: 98425af59a36efd33a62bc1a2c47b560, type: 2}
   _animator: {fileID: 1651681537190938427}
-  _brain: {fileID: 11400000, guid: ac588ffab7ac10be4bccb199494eee4d, type: 2}
+  _targetReachedRadius: 1.5
+  _brain: {fileID: 11400000, guid: 8707e53d4b78f3fcfb50aac6f929c968, type: 2}
 --- !u!114 &810741477971659939
 MonoBehaviour:
   m_ObjectHideFlags: 0
