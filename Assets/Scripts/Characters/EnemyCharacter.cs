@@ -13,8 +13,6 @@ public class EnemyCharacter : MonoBehaviour
     Animator _animator = null;
 
     [Header("AI Settings")]
-    [SerializeField, Tooltip("Distance for target positions to be considered 'reached'")]
-    float _targetReachedRadius = 1.0F;
     [SerializeField]
     AIBrain _brain = null;
 
@@ -57,15 +55,18 @@ public class EnemyCharacter : MonoBehaviour
     /// <param name="position"></param>
     public void MoveToTarget(Vector3 position)
     {
-        Vector3 positionDelta = transform.position - position;
-        if (Mathf.Sqrt(Vector3.Dot(positionDelta, positionDelta)) <= _targetReachedRadius)
-        {
-            _navMeshAgent.isStopped = true;
-            return;
-        }
-
         _navMeshAgent.isStopped = false;
         _navMeshAgent.destination = position;
+    }
+
+    public void StopMoving()
+    {
+        _navMeshAgent.isStopped = true;
+    }
+
+    public void Attack()
+    {
+        // TODO(nemjit001): Play attack animation
     }
 
     /// <summary>
