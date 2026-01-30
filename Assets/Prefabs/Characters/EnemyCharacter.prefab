@@ -93,9 +93,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0c4eef4aee4c8a54f83a8f6e53bf33cb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::EnemyCharacter
-  _playerRuntimeSet: {fileID: 11400000, guid: 30d54eafee55404f180c8c960f576964, type: 2}
   _enemyRuntimeSet: {fileID: 11400000, guid: 98425af59a36efd33a62bc1a2c47b560, type: 2}
   _animator: {fileID: 1651681537190938427}
+  _brain: {fileID: 11400000, guid: ac588ffab7ac10be4bccb199494eee4d, type: 2}
 --- !u!114 &810741477971659939
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -6,13 +6,15 @@ public class EnemyCharacter : MonoBehaviour
 {
     [Header("Runtime Data")]
     [SerializeField]
-    PlayerRuntimeSet _playerRuntimeSet = null;
-    [SerializeField]
     EnemyRuntimeSet _enemyRuntimeSet = null;
 
     [Header("Child Entity References")]
     [SerializeField]
     Animator _animator = null;
+
+    [Header("AI Settings")]
+    [SerializeField]
+    AIBrain _brain = null;
 
     NavMeshAgent _navMeshAgent = null;
     Health _characterHealth = null;
@@ -36,22 +38,32 @@ public class EnemyCharacter : MonoBehaviour
 
     void Update()
     {
-        // TODO(nemjit001): Select single player character and chase
-        // Might be fun if only on seeing player they get chased, otherwise patrol random positions in the navmesh
-        // TODO(nemjit001): If within range of attack (check by collider) disable navigating and play attack anims
-        PlayerCharacter target = _playerRuntimeSet.items[0];
-        _navMeshAgent.destination = target.transform.position;
+        // Update AI state
+        if (_brain != null)
+        {
+            _brain.Think(this);
+        }
 
         // Set animation state :)
         _animator.SetBool("IsMoving", !_navMeshAgent.isStopped);
     }
 
+    /// <summary>
+    /// Move the EnemyCharacter to a position.
+    /// </summary>
+    /// <param name="position"></param>
+    public void MoveToTarget(Vector3 position)
+    {
+        _navMeshAgent.destination = position;
+    }
+
+    /// <summary>
+    /// Kills off the enemy when its health is depleted.
+    /// </summary>
     private void OnHealthDepleted()
     {
         Debug.Log("Owno I died :(");
         // TODO(nemjit001): Spawn death VFX :)
-
-        gameObject.SetActive(false);
-        Destroy(gameObject, 1.0F);
+        Destroy(gameObject);
     }
 }
