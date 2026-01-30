@@ -7,6 +7,8 @@ public class WeaponManager : MonoBehaviour
     [SerializeField, Tooltip("The player camera transform is used for aiming and spawning weapon visuals")]
     Transform _cameraTransform = null;
     [SerializeField]
+    Transform _weaponTransform = null;
+    [SerializeField]
     List<Weapon> _weapons = new List<Weapon>(); // FIXME(nemjit001): Player weapon inventory should be runtime data
 
     InventoryManager _inventoryManager = null;
@@ -165,7 +167,7 @@ public class WeaponManager : MonoBehaviour
             return;
         }
 
-        _activeWeaponVisuals = Instantiate(ActiveWeapon.visuals, _cameraTransform);
+        _activeWeaponVisuals = Instantiate(ActiveWeapon.visuals, _weaponTransform);
     }
 
     /// <summary>
