@@ -30,7 +30,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 1392150677344617856}
+  - {fileID: 4920444803345128432}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &26700513179411144
@@ -47,7 +47,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Projectile
   _speed: 500
   _timeToLive: 1
---- !u!1 &1732893638375110492
+--- !u!1 &2112575925647252594
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -55,38 +55,38 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 1392150677344617856}
-  - component: {fileID: 4596236069806622696}
+  - component: {fileID: 4920444803345128432}
+  - component: {fileID: 3895150670665424090}
   m_Layer: 0
-  m_Name: Bullet Trail
+  m_Name: Tracer
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &1392150677344617856
+--- !u!4 &4920444803345128432
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1732893638375110492}
+  m_GameObject: {fileID: 2112575925647252594}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 1, y: 1, z: 2.5}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 2413896645929541649}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!96 &4596236069806622696
-TrailRenderer:
-  serializedVersion: 4
+--- !u!120 &3895150670665424090
+LineRenderer:
+  serializedVersion: 3
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1732893638375110492}
+  m_GameObject: {fileID: 2112575925647252594}
   m_Enabled: 1
   m_CastShadows: 0
   m_ReceiveShadows: 1
@@ -128,31 +128,32 @@ TrailRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_MaskInteraction: 0
-  m_Time: 0.1
-  m_PreviewTimeScale: 1
+  m_Positions:
+  - {x: 0, y: 0, z: 0}
+  - {x: 0, y: 0, z: 1}
   m_Parameters:
     serializedVersion: 3
-    widthMultiplier: 1
+    widthMultiplier: 0.1
     widthCurve:
       serializedVersion: 2
       m_Curve:
       - serializedVersion: 3
         time: 0
-        value: 0.33798882
-        inSlope: 0
-        outSlope: 0
+        value: 0.6210518
+        inSlope: 0.5953441
+        outSlope: 0.5953441
         tangentMode: 0
         weightedMode: 0
         inWeight: 0.33333334
-        outWeight: 0.33333334
+        outWeight: 0.2652173
       - serializedVersion: 3
         time: 1
-        value: 0.05027934
-        inSlope: -0.03900811
-        outSlope: -0.03900811
+        value: 1
+        inSlope: -0.0526315
+        outSlope: -0.0526315
         tangentMode: 0
         weightedMode: 0
-        inWeight: 0.42964828
+        inWeight: 0.19999999
         outWeight: 0
       m_PreInfinity: 2
       m_PostInfinity: 2
@@ -194,7 +195,6 @@ TrailRenderer:
     textureScale: {x: 1, y: 1}
     shadowBias: 0.5
     generateLightingData: 0
-  m_MinVertexDistance: 0.1
-  m_Autodestruct: 0
-  m_Emitting: 1
+  m_UseWorldSpace: 0
+  m_Loop: 0
   m_ApplyActiveColorSpace: 1
