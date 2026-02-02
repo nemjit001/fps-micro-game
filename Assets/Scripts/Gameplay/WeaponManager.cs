@@ -81,6 +81,12 @@ public class WeaponManager : MonoBehaviour
             Health health = hit.transform.root.GetComponent<Health>();
             if (health != null)
             {
+                // Spawn hit vfx
+                WeaponVFX hitVfx = Instantiate(ActiveWeapon.hitVfx);
+                hitVfx.transform.position = _cameraTransform.position + _cameraTransform.forward * hit.distance;
+                hitVfx.transform.rotation = Quaternion.LookRotation(hit.normal);
+
+                // Apply damage
                 health.ApplyDamage(ActiveWeapon.damage);
             }
         }

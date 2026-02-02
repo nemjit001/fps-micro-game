@@ -13,6 +13,7 @@ MonoBehaviour:
   m_Name: RifleWeapon
   m_EditorClassIdentifier: Assembly-CSharp::WeaponData
   visuals: {fileID: 1034870715764352660, guid: 618bdea0ed6a62e71ba0650bf7ef8899, type: 3}
+  hitVfx: {fileID: 3832424382915910170, guid: 833939a5f27d4da11bed953e3d8386f1, type: 3}
   projectile: {fileID: 26700513179411144, guid: 26ac41d6f87e0894c8629a6afc670070, type: 3}
   damage: 15
   fireRate: 10

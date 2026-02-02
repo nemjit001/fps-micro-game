@@ -7,6 +7,8 @@ public class Weapon : ScriptableObject
     [SerializeField]
     public WeaponVisuals visuals = null;
     [SerializeField]
+    public WeaponVFX hitVfx = null;
+    [SerializeField]
     public Projectile projectile = null;
     [Header("Weapon Stats")]
     [SerializeField]

@@ -13,6 +13,7 @@ MonoBehaviour:
   m_Name: HandgunWeapon
   m_EditorClassIdentifier: Assembly-CSharp::WeaponData
   visuals: {fileID: 1034870715764352660, guid: cf11b586ca1f9a842b3ba182cfcaedc8, type: 3}
+  hitVfx: {fileID: 3832424382915910170, guid: 833939a5f27d4da11bed953e3d8386f1, type: 3}
   projectile: {fileID: 26700513179411144, guid: 26ac41d6f87e0894c8629a6afc670070, type: 3}
   damage: 20
   fireRate: 5
