@@ -2,6 +2,7 @@
     <Style src="project://database/Assets/UI/MenuStyles.uss?fileID=7433441132597879392&amp;guid=bd756fc48c8f34747bd613cb22af768d&amp;type=3#MenuStyles"/>
     <ui:VisualElement name="game-over-menu-container" class="menu-container">
         <ui:Label text="Game Over!" name="game-over-label" class="menu-label"/>
+        <ui:Label text="You Win!" name="you-win-label" enabled="true" class="menu-label hidden"/>
         <ui:VisualElement name="menu-button-container" class="menu-button-container">
             <ui:Button text="Back to Main Menu" name="main-menu-button" class="menu-button"/>
         </ui:VisualElement>

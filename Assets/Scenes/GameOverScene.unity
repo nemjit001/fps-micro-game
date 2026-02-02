@@ -324,6 +324,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ad72bab083255ef2199170515968e63a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::GameOverUIManager
+  _gameCompletionState: {fileID: 11400000, guid: 2fe992a7f59d6766e9f442a6c510f598, type: 2}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0

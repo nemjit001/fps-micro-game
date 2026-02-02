@@ -45,6 +45,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::NewMonoBehaviourScript
   _gameOverTimeout: 1
+  _gameCompletionState: {fileID: 11400000, guid: 2fe992a7f59d6766e9f442a6c510f598, type: 2}
   _playerCharacter: {fileID: 149142954131397732, guid: b136d1e110eed303c81c174b6d907e52, type: 3}
   _playerSpawnPoints: []
   _playerRuntimeSet: {fileID: 11400000, guid: 30d54eafee55404f180c8c960f576964, type: 2}

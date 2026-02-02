@@ -8,6 +8,8 @@ public class GameManager : MonoBehaviour
     [Header("Game Settings")]
     [SerializeField]
     float _gameOverTimeout = 1.0F;
+    [SerializeField]
+    GameCompletionState _gameCompletionState = null;
 
     [Header("Player Settings")]
     [SerializeField]
@@ -32,6 +34,7 @@ public class GameManager : MonoBehaviour
     {
         if (!_gameFinished && IsGameOver())
         {
+            SetCompletionState();
             StartCoroutine(OnGameOverCoroutine());
         }
     }
@@ -47,6 +50,23 @@ public class GameManager : MonoBehaviour
         PlayerCharacter newCharacter = Instantiate(_playerCharacter);
         newCharacter.transform.position = spawnTransform.position;
         newCharacter.transform.rotation = spawnTransform.rotation;
+    }
+
+    private void SetCompletionState()
+    {
+        if (!_waveManager.WavesFinished())
+        {
+            return;
+        }
+
+        if (_playerRuntimeSet.items.Count != 0)
+        {
+            _gameCompletionState.completionCondition = CompletionCondition.Win;
+        }
+        else
+        {
+            _gameCompletionState.completionCondition = CompletionCondition.Lose;
+        }
     }
 
     private bool IsGameOver()

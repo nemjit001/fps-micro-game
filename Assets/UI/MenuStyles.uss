@@ -23,3 +23,7 @@
     justify-content: center;
     background-color: rgb(79, 79, 79);
 }
+
+.hidden {
+    display: none;
+}
