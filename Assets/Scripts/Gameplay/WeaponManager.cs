@@ -82,7 +82,7 @@ public class WeaponManager : MonoBehaviour
             if (health != null)
             {
                 // Spawn hit vfx
-                WeaponVFX hitVfx = Instantiate(ActiveWeapon.hitVfx);
+                WeaponVFX hitVfx = Instantiate(ActiveWeapon.hitVfx, hit.transform.root);
                 hitVfx.transform.position = _cameraTransform.position + _cameraTransform.forward * hit.distance;
                 hitVfx.transform.rotation = Quaternion.LookRotation(hit.normal);
 
