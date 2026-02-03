@@ -1,0 +1,12 @@
+<ui:UXML xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" noNamespaceSchemaLocation="../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
+    <ui:Slider label="Look Sensitivity" high-value="1" name="look-sens-slider">
+        <Bindings>
+            <ui:DataBinding property="value" data-source-path="lookSensitivity" data-source="project://database/Assets/GameData/PlayerInputSettings.asset?fileID=11400000&amp;guid=d2c25151fa7d1c12897639f5dff6f990&amp;type=2#PlayerInputSettings" binding-mode="TwoWay"/>
+        </Bindings>
+    </ui:Slider>
+    <ui:Toggle label="Invert Y Look" name="invert-y-look-toggle">
+        <Bindings>
+            <ui:DataBinding property="value" data-source-path="invertYLook" data-source="project://database/Assets/GameData/PlayerInputSettings.asset?fileID=11400000&amp;guid=d2c25151fa7d1c12897639f5dff6f990&amp;type=2#PlayerInputSettings" binding-mode="TwoWay"/>
+        </Bindings>
+    </ui:Toggle>
+</ui:UXML>

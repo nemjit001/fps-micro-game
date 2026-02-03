@@ -4,6 +4,8 @@
         <ui:Label text="FPS Micro Game" name="game-title" class="menu-label"/>
         <ui:VisualElement name="menu-button-container" class="menu-button-container">
             <ui:Button text="Start Game" name="play-button" class="menu-button"/>
+            <ui:Button text="Settings" name="settings-button" class="menu-button"/>
+            <ui:Button text="Credits" name="credits-button" class="menu-button"/>
             <ui:Button text="Quit" name="quit-button" class="menu-button"/>
         </ui:VisualElement>
     </ui:VisualElement>

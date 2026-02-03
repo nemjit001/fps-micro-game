@@ -1,16 +1,6 @@
 :root {
 }
 
-.menu-button-container {
-    flex-grow: 0;
-}
-
-.menu-button {
-    width: 400px;
-    font-size: 20px;
-    -unity-font-style: bold;
-}
-
 .menu-label {
     font-size: 40px;
     -unity-font-style: bold;
@@ -22,6 +12,16 @@
     align-items: center;
     justify-content: center;
     background-color: rgb(79, 79, 79);
+}
+
+.menu-button-container {
+    flex-grow: 0;
+}
+
+.menu-button {
+    width: 400px;
+    font-size: 20px;
+    -unity-font-style: bold;
 }
 
 .hidden {
