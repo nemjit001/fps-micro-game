@@ -14,14 +14,29 @@
     background-color: rgb(79, 79, 79);
 }
 
-.menu-button-container {
+.transparent-background {
+    background-color: rgba(0, 0, 0, 0.61);
+}
+
+.menu-control-container {
     flex-grow: 0;
+    width: 500px;
+    align-items: center;
 }
 
 .menu-button {
     width: 400px;
     font-size: 20px;
     -unity-font-style: bold;
+}
+
+.menu-control {
+    width: 400px;
+}
+
+.menu-text {
+    font-size: 20px;
+    color: rgb(255, 255, 255);
 }
 
 .hidden {

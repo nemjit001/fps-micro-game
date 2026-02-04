@@ -1,8 +1,7 @@
-using Unity.Properties;
 using UnityEngine;
 using UnityEngine.UIElements;
 
-public class PlayerUIManager : MonoBehaviour
+public class PlayerUIManager : UIManager
 {
     [SerializeField]
     Health _characterHealth = null;
