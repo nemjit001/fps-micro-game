@@ -1,4 +1,3 @@
-using System;
 using UnityEngine;
 
 public class PauseManager : MonoBehaviour
@@ -33,12 +32,12 @@ public class PauseManager : MonoBehaviour
     public void PauseGame()
     {
         Time.timeScale = 0.0F;
-        _pauseMenuUI.gameObject.SetActive(true);
+        // _pauseMenuUI.Show();
     }
 
     public void UnpauseGame()
     {
         Time.timeScale = 1.0F;
-        _pauseMenuUI.gameObject.SetActive(false);
+        // _pauseMenuUI.Hide();
     }
 }

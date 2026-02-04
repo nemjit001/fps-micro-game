@@ -19,18 +19,32 @@ public class MainMenuUIManager : MonoBehaviour
         _quitButton = document.rootVisualElement.Query<Button>("quit-button");
 
         _playButton.clicked += OnPressPlay;
+        _settingsButton.clicked += OnPressSettings;
+        _creditsButton.clicked += OnPressCredits;
         _quitButton.clicked += OnPressQuit;
     }
 
     void OnDisable()
     {
         _playButton.clicked -= OnPressPlay;
+        _settingsButton.clicked -= OnPressSettings;
+        _creditsButton.clicked -= OnPressCredits;
         _quitButton.clicked -= OnPressQuit;
     }
 
     private void OnPressPlay()
     {
         SceneManager.LoadSceneAsync("SampleScene", LoadSceneMode.Single);
+    }
+
+    private void OnPressSettings()
+    {
+        //
+    }
+
+    private void OnPressCredits()
+    {
+        //
     }
 
     private void OnPressQuit()

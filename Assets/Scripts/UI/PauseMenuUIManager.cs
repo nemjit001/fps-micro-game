@@ -18,18 +18,25 @@ public class PauseMenuUIManager : MonoBehaviour
         _quitButton = document.rootVisualElement.Query<Button>("quit-button");
 
         _continueButton.clicked += OnPressContinue;
+        _settingsButton.clicked += OnPressSettings;
         _quitButton.clicked += OnPressQuit;
     }
 
     void OnDisable()
     {
         _continueButton.clicked -= OnPressContinue;
+        _settingsButton.clicked -= OnPressSettings;
         _quitButton.clicked -= OnPressQuit;
     }
 
     private void OnPressContinue()
     {
         OnUnpause();
+    }
+
+    private void OnPressSettings()
+    {
+        //
     }
 
     private void OnPressQuit()

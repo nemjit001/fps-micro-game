@@ -2,7 +2,7 @@
     <Style src="project://database/Assets/UI/MenuStyles.uss?fileID=7433441132597879392&amp;guid=bd756fc48c8f34747bd613cb22af768d&amp;type=3#MenuStyles"/>
     <ui:VisualElement name="main-menu-container" class="menu-container">
         <ui:Label text="FPS Micro Game" name="game-title" class="menu-label"/>
-        <ui:VisualElement name="menu-button-container" class="menu-button-container">
+        <ui:VisualElement name="menu-button-container" class="menu-control-container">
             <ui:Button text="Start Game" name="play-button" class="menu-button"/>
             <ui:Button text="Settings" name="settings-button" class="menu-button"/>
             <ui:Button text="Credits" name="credits-button" class="menu-button"/>

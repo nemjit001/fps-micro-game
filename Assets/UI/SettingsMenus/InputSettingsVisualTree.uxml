@@ -1,12 +1,19 @@
 <ui:UXML xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" noNamespaceSchemaLocation="../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
-    <ui:Slider label="Look Sensitivity" high-value="1" name="look-sens-slider">
-        <Bindings>
-            <ui:DataBinding property="value" data-source-path="lookSensitivity" data-source="project://database/Assets/GameData/PlayerInputSettings.asset?fileID=11400000&amp;guid=d2c25151fa7d1c12897639f5dff6f990&amp;type=2#PlayerInputSettings" binding-mode="TwoWay"/>
-        </Bindings>
-    </ui:Slider>
-    <ui:Toggle label="Invert Y Look" name="invert-y-look-toggle">
-        <Bindings>
-            <ui:DataBinding property="value" data-source-path="invertYLook" data-source="project://database/Assets/GameData/PlayerInputSettings.asset?fileID=11400000&amp;guid=d2c25151fa7d1c12897639f5dff6f990&amp;type=2#PlayerInputSettings" binding-mode="TwoWay"/>
-        </Bindings>
-    </ui:Toggle>
+    <Style src="project://database/Assets/UI/MenuStyles.uss?fileID=7433441132597879392&amp;guid=bd756fc48c8f34747bd613cb22af768d&amp;type=3#MenuStyles"/>
+    <ui:VisualElement name="menu-container" class="menu-container" style="flex-grow: 1;">
+        <ui:Label text="Input Settings" name="menu-label" class="menu-label"/>
+        <ui:VisualElement name="menu-control-container" class="menu-control-container">
+            <ui:Slider label="Look Sensitivity" high-value="1" name="look-sens-slider" class="menu-text menu-control">
+                <Bindings>
+                    <ui:DataBinding property="value" data-source-path="lookSensitivity" data-source="project://database/Assets/GameData/PlayerInputSettings.asset?fileID=11400000&amp;guid=d2c25151fa7d1c12897639f5dff6f990&amp;type=2#PlayerInputSettings" binding-mode="TwoWay"/>
+                </Bindings>
+            </ui:Slider>
+            <ui:Toggle label="Invert Y Look" name="invert-y-look-toggle" class="menu-text menu-control">
+                <Bindings>
+                    <ui:DataBinding property="value" data-source-path="invertYLook" data-source="project://database/Assets/GameData/PlayerInputSettings.asset?fileID=11400000&amp;guid=d2c25151fa7d1c12897639f5dff6f990&amp;type=2#PlayerInputSettings" binding-mode="TwoWay"/>
+                </Bindings>
+            </ui:Toggle>
+            <ui:Button text="Back" name="back-button" class="menu-button"/>
+        </ui:VisualElement>
+    </ui:VisualElement>
 </ui:UXML>

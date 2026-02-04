@@ -3,7 +3,7 @@
     <ui:VisualElement name="game-over-menu-container" class="menu-container">
         <ui:Label text="Game Over!" name="game-over-label" class="menu-label"/>
         <ui:Label text="You Win!" name="you-win-label" enabled="true" class="menu-label hidden"/>
-        <ui:VisualElement name="menu-button-container" class="menu-button-container">
+        <ui:VisualElement name="menu-button-container" class="menu-control-container">
             <ui:Button text="Back to Main Menu" name="main-menu-button" class="menu-button"/>
         </ui:VisualElement>
     </ui:VisualElement>
