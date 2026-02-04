@@ -1,11 +1,12 @@
 using System;
-using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UIElements;
 
-public class PauseMenuUIManager : MonoBehaviour
+public class PauseMenuUIManager : UIManager
 {
+    public Action OnOpenSettings = null;
     public Action OnUnpause = null;
+
     Button _continueButton = null;
     Button _settingsButton = null;
     Button _quitButton = null;
@@ -36,7 +37,7 @@ public class PauseMenuUIManager : MonoBehaviour
 
     private void OnPressSettings()
     {
-        //
+        OnOpenSettings();
     }
 
     private void OnPressQuit()

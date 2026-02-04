@@ -1,10 +1,13 @@
+using System;
 using UnityEditor;
-using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UIElements;
 
-public class MainMenuUIManager : MonoBehaviour
+public class MainMenuUIManager : UIManager
 {
+    public Action OnOpenSettings = null;
+    public Action OnOpenCredits = null;
+
     Button _playButton = null;
     Button _settingsButton = null;
     Button _creditsButton = null;
@@ -39,12 +42,12 @@ public class MainMenuUIManager : MonoBehaviour
 
     private void OnPressSettings()
     {
-        //
+        OnOpenSettings();
     }
 
     private void OnPressCredits()
     {
-        //
+        OnOpenCredits();
     }
 
     private void OnPressQuit()

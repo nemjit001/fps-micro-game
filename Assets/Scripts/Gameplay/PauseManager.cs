@@ -3,7 +3,7 @@ using UnityEngine;
 public class PauseManager : MonoBehaviour
 {
     [SerializeField]
-    PauseMenuUIManager _pauseMenuUI = null;
+    PauseMenuSystem _pauseMenu = null;
 
     static PauseManager _instance = null;
 
@@ -12,7 +12,7 @@ public class PauseManager : MonoBehaviour
         get => _instance;
     }
 
-    public PauseMenuUIManager UIManager { get => _pauseMenuUI; }
+    public PauseMenuSystem PauseMenu { get => _pauseMenu; }
 
     public bool IsPaused { get => Time.timeScale == 0.0F; }
 
@@ -32,12 +32,12 @@ public class PauseManager : MonoBehaviour
     public void PauseGame()
     {
         Time.timeScale = 0.0F;
-        // _pauseMenuUI.Show();
+        _pauseMenu.Show();
     }
 
     public void UnpauseGame()
     {
         Time.timeScale = 1.0F;
-        // _pauseMenuUI.Hide();
+        _pauseMenu.Hide();
     }
 }

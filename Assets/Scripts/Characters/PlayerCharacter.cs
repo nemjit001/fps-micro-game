@@ -68,7 +68,7 @@ public class PlayerCharacter : MonoBehaviour
     {
         // Lock player cursor to game window
         Cursor.lockState = CursorLockMode.Locked;
-        PauseManager.Instance.UIManager.OnUnpause += OnUnpause;
+        PauseManager.Instance.PauseMenu.OnUnpause += OnUnpause;
 
         _playerInput = GetComponent<PlayerInput>();
         _characterController = GetComponent<CharacterController>();

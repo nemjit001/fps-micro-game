@@ -1,8 +1,12 @@
-using UnityEngine;
+using System;
 using UnityEngine.UIElements;
 
-public class SettingsUIManager : MonoBehaviour
+public class SettingsUIManager : UIManager
 {
+    public Action OnOpenControls = null;
+    public Action OnOpenInputSettings = null;
+    public Action OnLeaveMenu = null;
+
     Button _controlsButton = null;
     Button _inputSettingsButton = null;
     Button _backButton = null;
@@ -28,16 +32,16 @@ public class SettingsUIManager : MonoBehaviour
 
     private void OnPressControls()
     {
-        //
+        OnOpenControls();
     }
 
     private void OnPressInputSettings()
     {
-        //
+        OnOpenInputSettings();
     }
 
     private void OnPressBackButton()
     {
-        //
+        OnLeaveMenu();
     }
 }
