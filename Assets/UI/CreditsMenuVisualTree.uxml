@@ -2,7 +2,7 @@
     <Style src="project://database/Assets/UI/MenuStyles.uss?fileID=7433441132597879392&amp;guid=bd756fc48c8f34747bd613cb22af768d&amp;type=3#MenuStyles"/>
     <ui:VisualElement name="menu-container" data-source="project://database/Assets/GameData/GameCredits.asset?fileID=11400000&amp;guid=e9a0ed476f20ad3fd8244fd2d9e6e1bc&amp;type=2#GameCredits" class="menu-container">
         <ui:Label text="Credits" name="credits-label" class="menu-label"/>
-        <ui:ListView item-template="project://database/Assets/UI/Credits/CreditsElement.uxml?fileID=9197481963319205126&amp;guid=8ad45335adc05a5e0977d8f2c4e98bb1&amp;type=3#CreditsElement" name="credits-list" binding-source-selection-mode="AutoAssign" data-source-path="credits" data-source-type="GameCredits, Assembly-CSharp"/>
+        <ui:ListView name="credits-list" data-source-path="credits" allow-add="false" selection-type="None" virtualization-method="DynamicHeight" binding-source-selection-mode="AutoAssign" allow-remove="false" item-template="project://database/Assets/UI/Credits/CreditsElement.uxml?fileID=9197481963319205126&amp;guid=8ad45335adc05a5e0977d8f2c4e98bb1&amp;type=3#CreditsElement" style="flex-grow: 0;"/>
         <ui:Button text="Back" name="back-button" class="menu-button"/>
     </ui:VisualElement>
 </ui:UXML>

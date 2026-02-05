@@ -12,5 +12,6 @@ public class CreditsElement
 [CreateAssetMenu(fileName = "GameCredits", menuName = "Scriptable Objects/GameCredits")]
 public class GameCredits : ScriptableObject
 {
-    public List<CreditsElement> credits = new List<CreditsElement>();
+    [SerializeField]
+    public List<CreditsElement> credits = null;
 }
