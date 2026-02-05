@@ -55,8 +55,7 @@ public class MainMenuUIManager : UIManager
     {
     #if UNITY_EDITOR
         EditorApplication.isPlaying = false;
-    #else
-        Application.Quit();
     #endif
+        Application.Quit();
     }
 }

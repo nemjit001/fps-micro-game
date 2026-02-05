@@ -19,6 +19,8 @@ public class PlayerUIManager : UIManager
     {
         UIDocument document = GetComponent<UIDocument>();
         _playerHealthBar = document.rootVisualElement.Query<ProgressBar>("player-health-bar");
+        _playerHealthBar.dataSource = _characterHealth;
+        
         _weaponAmmoLabel = document.rootVisualElement.Query<Label>("weapon-ammo-label");
     }
 
@@ -29,8 +31,7 @@ public class PlayerUIManager : UIManager
 
     void Update()
     {
-        // TODO(nemjit001): Show percentage based on current and max health
-        _playerHealthBar.value = _characterHealth.CurrentHealth;
+        // TODO(nemjit001): Use runtime data binding for this
         _weaponAmmoLabel.text = WeaponAmmoLabelText;
     }
 }

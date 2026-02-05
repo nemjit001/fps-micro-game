@@ -136,6 +136,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 225be988ee4bdf3edb2400efee3e74f7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::CreditsMenuUIManager
+  _gameCredits: {fileID: 11400000, guid: e9a0ed476f20ad3fd8244fd2d9e6e1bc, type: 2}
 --- !u!1 &6376819207300706892
 GameObject:
   m_ObjectHideFlags: 0

@@ -2,13 +2,13 @@
     <Style src="project://database/Assets/UI/MenuStyles.uss?fileID=7433441132597879392&amp;guid=bd756fc48c8f34747bd613cb22af768d&amp;type=3#MenuStyles"/>
     <ui:VisualElement name="menu-container" class="menu-container" style="flex-grow: 1;">
         <ui:Label text="Input Settings" name="menu-label" class="menu-label"/>
-        <ui:VisualElement name="menu-control-container" class="menu-control-container">
-            <ui:Slider label="Look Sensitivity" high-value="1" name="look-sens-slider" class="menu-text menu-control">
+        <ui:VisualElement name="menu-control-container" data-source-type="PlayerInputSettings, Assembly-CSharp" class="menu-control-container">
+            <ui:Slider label="Look Sensitivity" high-value="1" name="look-sens-slider" data-source-path="lookSensitivity" class="menu-text menu-control">
                 <Bindings>
                     <ui:DataBinding property="value" data-source-path="" binding-mode="TwoWay"/>
                 </Bindings>
             </ui:Slider>
-            <ui:Toggle label="Invert Y Look" name="invert-y-look-toggle" value="false" class="menu-text menu-control">
+            <ui:Toggle label="Invert Y Look" name="invert-y-look-toggle" value="false" data-source-path="invertYLook" class="menu-text menu-control">
                 <Bindings>
                     <ui:DataBinding property="value" binding-mode="TwoWay"/>
                 </Bindings>

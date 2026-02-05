@@ -16,20 +16,11 @@ public class InputSettingsUIManager : UIManager
     void OnEnable()
     {
         UIDocument document = GetComponent<UIDocument>();
-        document.rootVisualElement.dataSource = _inputSettings;
-
-        Slider lookSensSlider = document.rootVisualElement.Query<Slider>("look-sens-slider");
-        lookSensSlider.SetBinding("value", new DataBinding {
-            dataSourcePath = new Unity.Properties.PropertyPath(nameof(PlayerInputSettings.lookSensitivity))
-        });
-
-        Toggle invertYLookToggle = document.rootVisualElement.Query<Toggle>("invert-y-look-toggle");
-        invertYLookToggle.SetBinding("value", new DataBinding {
-            dataSourcePath = new Unity.Properties.PropertyPath(nameof(PlayerInputSettings.invertYLook))
-        });
-
         _backButton = document.rootVisualElement.Query<Button>("back-button");
         _backButton.clicked += OnPressBackButton;
+
+        VisualElement controlContainer = document.rootVisualElement.Query<VisualElement>("menu-control-container");
+        controlContainer.dataSource = _inputSettings;
 
         loadInputSettings();
     }

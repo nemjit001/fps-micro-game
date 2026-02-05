@@ -1,7 +1,12 @@
 <ui:UXML xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" noNamespaceSchemaLocation="../../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
     <Style src="project://database/Assets/UI/MenuStyles.uss?fileID=7433441132597879392&amp;guid=bd756fc48c8f34747bd613cb22af768d&amp;type=3#MenuStyles"/>
-    <ui:VisualElement name="credits-element-container" data-source-type="CreditsElement, Assembly-CSharp" style="flex-grow: 1;">
+    <ui:VisualElement name="credits-element-container" data-source-type="CreditsElement, Assembly-CSharp" style="flex-grow: 1; align-items: center;">
         <ui:Label text="Name" name="name-label" data-source-path="name" class="menu-text">
+            <Bindings>
+                <ui:DataBinding property="text" binding-mode="ToTarget"/>
+            </Bindings>
+        </ui:Label>
+        <ui:Label text="Contrib" name="contribution-label" data-source-path="contribution" class="menu-text">
             <Bindings>
                 <ui:DataBinding property="text" binding-mode="ToTarget"/>
             </Bindings>

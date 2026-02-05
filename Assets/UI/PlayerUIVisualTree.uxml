@@ -1,7 +1,11 @@
 <ui:UXML xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" noNamespaceSchemaLocation="../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
     <ui:VisualElement name="player-ui-container" style="flex-grow: 1; flex-direction: row;">
         <ui:VisualElement style="flex-grow: 1;">
-            <ui:ProgressBar value="20" title="" name="player-health-bar" style="width: 600px;"/>
+            <ui:ProgressBar value="20" title="" name="player-health-bar" data-source-type="Health, Assembly-CSharp" data-source-path="_health" style="width: 600px;">
+                <Bindings>
+                    <ui:DataBinding property="value" binding-mode="ToTarget"/>
+                </Bindings>
+            </ui:ProgressBar>
         </ui:VisualElement>
         <ui:VisualElement style="flex-grow: 1; justify-content: flex-end; align-items: flex-end;">
             <ui:VisualElement style="flex-grow: 0; flex-direction: row;">
