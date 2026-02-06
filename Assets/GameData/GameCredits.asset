@@ -14,6 +14,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::GameCredits
   credits:
   - name: Tijmen Verhoef
-    contribution: Game Programming
+    contribution: Gameplay Programming, Game Design
   - name: Kenney.nl
-    contribution: Art Assets (publicly released under CC0)
+    contribution: Provided Art Assets (publicly released under CC0)

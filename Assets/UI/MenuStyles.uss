@@ -39,6 +39,14 @@
     color: rgb(255, 255, 255);
 }
 
+.credits-list {
+
+}
+
+.credits-list > * > .unity-list-view__item {
+    background-color: transparent;
+}
+
 .hidden {
     display: none;
 }
