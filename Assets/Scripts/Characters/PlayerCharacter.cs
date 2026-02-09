@@ -18,6 +18,8 @@ public class PlayerCharacter : MonoBehaviour
     [SerializeField]
     float _moveSpeed = 1.0F;
     [SerializeField]
+    float _sprintMultiplier = 1.5F;
+    [SerializeField]
     float _characterMass = 1.0F;
     [SerializeField]
     float _jumpStrength = 1.0F;
@@ -47,6 +49,7 @@ public class PlayerCharacter : MonoBehaviour
     bool _isGrounded = false;
     Vector3 _gravityVector = Vector3.zero;
     bool _justJumped = false;
+    bool _isSprinting = false;
     bool _isAiming = false;
     bool _isShooting = false;
     bool _stoppedShooting = false;
@@ -96,7 +99,7 @@ public class PlayerCharacter : MonoBehaviour
 
         // Apply look rotation to character
         float aimSpeedMultiplier = _isAiming ? _aimingLookSpeedMultiplier : 1.0F;
-        float yLookMultiplier = _inputSettings.invertYLook ? -1.0F : 1.0F;
+        float yLookMultiplier = _inputSettings.invertYLook ? 1.0F : -1.0F;
         _cameraFollowTarget.Rotate(Vector3.right, yLookMultiplier * _inputSettings.lookSensitivity * aimSpeedMultiplier * _rawLookInput.y);
         transform.Rotate(Vector3.up, _inputSettings.lookSensitivity * aimSpeedMultiplier * _rawLookInput.x);
 
@@ -107,8 +110,14 @@ public class PlayerCharacter : MonoBehaviour
         _cameraFollowTarget.localEulerAngles = euler;
 
         // Move character
+        float actualMoveSpeed = _moveSpeed;
+        if (_isSprinting && _isGrounded && !_isAiming)
+        {   // Only apply sprint speed when grounded and not aiming
+            actualMoveSpeed *= _sprintMultiplier;
+        }
+
         Vector3 moveDirection = transform.forward * _rawMoveInput.y + transform.right * _rawMoveInput.x;
-        Vector3 moveVector = moveDirection * _moveSpeed * Time.deltaTime;
+        Vector3 moveVector = moveDirection * actualMoveSpeed * Time.deltaTime;
         _characterController.Move(moveVector);
 
         // Apply jump
@@ -149,6 +158,12 @@ public class PlayerCharacter : MonoBehaviour
             _gravityVector += Vector3.down * _characterMass * GRAVITY_ACCELERATION * Time.deltaTime;
             _characterController.Move(_gravityVector * Time.deltaTime);
         }
+
+        // Lastly manage player state
+        if (_isAiming || _isShooting)
+        {   // Cannot sprint while shooting or aiming
+            _isSprinting = false;
+        }
     }
 
     private void GroundCheck()
@@ -181,6 +196,18 @@ public class PlayerCharacter : MonoBehaviour
     public void OnLook(InputValue value)
     {
         _rawLookInput = value.Get<Vector2>();
+    }
+
+    public void OnSprint(InputValue value)
+    {
+        if (_inputSettings.toggleSprint)
+        {
+            _isSprinting = !_isSprinting;
+        }
+        else
+        {
+            _isSprinting = value.Get<float>() > 0.5F;
+        }
     }
 
     public void OnJump()

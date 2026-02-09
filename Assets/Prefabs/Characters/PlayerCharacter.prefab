@@ -111,6 +111,7 @@ MonoBehaviour:
   _cameraFollowTarget: {fileID: 7457293305347597180}
   _playerCamera: {fileID: 6592397337982320079}
   _moveSpeed: 5
+  _sprintMultiplier: 1.4
   _characterMass: 2
   _jumpStrength: 6
   _aimingLookSpeedMultiplier: 0.25

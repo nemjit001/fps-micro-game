@@ -12,5 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 626ff3f2449e8da7d9821907878fcd46, type: 3}
   m_Name: PlayerInputSettings
   m_EditorClassIdentifier: Assembly-CSharp::PlayerInputSettings
-  lookSensitivity: 0.5
-  invertYLook: 1
+  lookSensitivity: 0.25
+  invertYLook: 0
+  toggleSprint: 1

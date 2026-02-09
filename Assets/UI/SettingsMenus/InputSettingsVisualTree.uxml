@@ -13,6 +13,11 @@
                     <ui:DataBinding property="value" binding-mode="TwoWay"/>
                 </Bindings>
             </ui:Toggle>
+            <ui:Toggle label="Toggle Sprint" name="toggle-sprint-toggle" value="false" data-source-path="toggleSprint" class="menu-text menu-control">
+                <Bindings>
+                    <ui:DataBinding property="value" binding-mode="TwoWay"/>
+                </Bindings>
+            </ui:Toggle>
             <ui:Button text="Back" name="back-button" class="menu-button"/>
         </ui:VisualElement>
     </ui:VisualElement>

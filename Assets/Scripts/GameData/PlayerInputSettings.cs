@@ -7,4 +7,6 @@ public class PlayerInputSettings : ScriptableObject
     public float lookSensitivity = 0.5F;
     [SerializeField]
     public bool invertYLook = false;
+    [SerializeField]
+    public bool toggleSprint = false;
 }
