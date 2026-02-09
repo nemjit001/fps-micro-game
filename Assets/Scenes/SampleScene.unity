@@ -1941,14 +1941,6 @@ PrefabInstance:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 2882224565835352007, guid: 97286bd5446713d43b5ee966a557c3a4, type: 3}
-      propertyPath: _waveCount
-      value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: 2882224565835352007, guid: 97286bd5446713d43b5ee966a557c3a4, type: 3}
-      propertyPath: _enemiesPerWave
-      value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: 2882224565835352007, guid: 97286bd5446713d43b5ee966a557c3a4, type: 3}
       propertyPath: _enemySpawnPoints.Array.size
       value: 3
       objectReference: {fileID: 0}

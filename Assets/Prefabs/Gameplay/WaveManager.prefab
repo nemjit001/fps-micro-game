@@ -45,7 +45,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::WaveManager
   _enemyRuntimeSet: {fileID: 11400000, guid: 98425af59a36efd33a62bc1a2c47b560, type: 2}
-  _waveCount: 1
-  _enemiesPerWave: 1
+  _waveCount: 3
+  _enemiesPerWave: 3
   _enemyCharacter: {fileID: 7902391951212131845, guid: 474a7d416bcfdd845ad0646737b92e1c, type: 3}
   _enemySpawnPoints: []
