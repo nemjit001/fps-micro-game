@@ -5,7 +5,7 @@ public class AIChaseBrain : AIBrain
 {
     [Header("AI Settings")]
     [SerializeField]
-    PlayerRuntimeSet _playerRuntimeSet = null;
+    PlayerCharacterRuntimeSet _playerCharacterRuntimeSet = null;
     [SerializeField, Tooltip("Distance for target positions to be considered 'reached'")]
     float _targetReachedRadius = 1.0F;
 
@@ -13,7 +13,7 @@ public class AIChaseBrain : AIBrain
 
     public override void Think(EnemyCharacter character)
     {
-        if (_playerRuntimeSet.items.Count == 0)
+        if (_playerCharacterRuntimeSet.items.Count == 0)
         {
             return;
         }
@@ -34,7 +34,7 @@ public class AIChaseBrain : AIBrain
     {
         if (_playerTarget == null)
         {
-            _playerTarget = _playerRuntimeSet.items[Random.Range(0, _playerRuntimeSet.items.Count)];
+            _playerTarget = _playerCharacterRuntimeSet.items[Random.Range(0, _playerCharacterRuntimeSet.items.Count)];
         }
     }
 

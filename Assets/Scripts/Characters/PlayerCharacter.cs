@@ -6,7 +6,7 @@ public class PlayerCharacter : MonoBehaviour
 {
     [Header("Runtime Data")]
     [SerializeField]
-    PlayerRuntimeSet _playerRuntimeSet = null;
+    PlayerCharacterRuntimeSet _playerCharacterRuntimeSet = null;
 
     [Header("Child Entity References")]
     [SerializeField]
@@ -64,7 +64,7 @@ public class PlayerCharacter : MonoBehaviour
 
     void Awake()
     {
-        _playerRuntimeSet.Add(this);
+        _playerCharacterRuntimeSet.Add(this);
     }
 
     void Start()
@@ -83,7 +83,7 @@ public class PlayerCharacter : MonoBehaviour
 
     void OnDestroy()
     {
-        _playerRuntimeSet.Remove(this);
+        _playerCharacterRuntimeSet.Remove(this);
         Cursor.lockState = CursorLockMode.None;
     }
 
