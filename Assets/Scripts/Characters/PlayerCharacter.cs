@@ -1,6 +1,12 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
 
+public enum WeaponCycleDirection
+{
+    Next,
+    Previous,
+}
+
 [RequireComponent(typeof(CharacterController), typeof(WeaponManager), typeof(Health))]
 public class PlayerCharacter : MonoBehaviour
 {
@@ -32,19 +38,14 @@ public class PlayerCharacter : MonoBehaviour
     [SerializeField, Range(20.0F, 120.0F)]
     float _aimingFOV = 40.0F;
 
-    [Header("Input Settings")]
-    [SerializeField]
-    PlayerInputSettings _inputSettings = null;
-
     const float GRAVITY_ACCELERATION = 9.81F;
     const float GROUND_CHECK_EPSILON = 0.1F;
 
-    PlayerInput _playerInput = null;
     CharacterController _characterController = null;
     WeaponManager _weaponManager = null;
     Health _characterHealth = null;
-    Vector2 _rawMoveInput = Vector2.zero;
-    Vector2 _rawLookInput = Vector2.zero;
+    Vector2 _moveInput = Vector2.zero;
+    Vector2 _lookInput = Vector2.zero;
 
     bool _isGrounded = false;
     Vector3 _gravityVector = Vector3.zero;
@@ -69,11 +70,6 @@ public class PlayerCharacter : MonoBehaviour
 
     void Start()
     {
-        // Lock player cursor to game window
-        Cursor.lockState = CursorLockMode.Locked;
-        PauseManager.Instance.PauseMenu.OnUnpause += OnUnpause;
-
-        _playerInput = GetComponent<PlayerInput>();
         _characterController = GetComponent<CharacterController>();
         _weaponManager = GetComponent<WeaponManager>();
         _characterHealth = GetComponent<Health>();
@@ -99,9 +95,8 @@ public class PlayerCharacter : MonoBehaviour
 
         // Apply look rotation to character
         float aimSpeedMultiplier = _isAiming ? _aimingLookSpeedMultiplier : 1.0F;
-        float yLookMultiplier = _inputSettings.invertYLook ? 1.0F : -1.0F;
-        _cameraFollowTarget.Rotate(Vector3.right, yLookMultiplier * _inputSettings.lookSensitivity * aimSpeedMultiplier * _rawLookInput.y);
-        transform.Rotate(Vector3.up, _inputSettings.lookSensitivity * aimSpeedMultiplier * _rawLookInput.x);
+        _cameraFollowTarget.Rotate(Vector3.right, aimSpeedMultiplier * _lookInput.y);
+        transform.Rotate(Vector3.up, aimSpeedMultiplier * _lookInput.x);
 
         Vector3 euler = _cameraFollowTarget.localEulerAngles;
         euler.z = 0;
@@ -116,7 +111,7 @@ public class PlayerCharacter : MonoBehaviour
             actualMoveSpeed *= _sprintMultiplier;
         }
 
-        Vector3 moveDirection = transform.forward * _rawMoveInput.y + transform.right * _rawMoveInput.x;
+        Vector3 moveDirection = transform.forward * _moveInput.y + transform.right * _moveInput.x;
         Vector3 moveVector = moveDirection * actualMoveSpeed * Time.deltaTime;
         _characterController.Move(moveVector);
 
@@ -186,84 +181,66 @@ public class PlayerCharacter : MonoBehaviour
     private void OnHealthDepleted()
     {
         Debug.Log("Owno, the player died :(");
+        Destroy(gameObject);
     }
 
-    public void OnMove(InputValue value)
+    public void SetMoveDirection(Vector2 direction)
     {
-        _rawMoveInput = value.Get<Vector2>();
+        _moveInput = direction;
     }
 
-    public void OnLook(InputValue value)
+    public void SetLookRotation(Vector2 rotation)
     {
-        _rawLookInput = value.Get<Vector2>();
+        _lookInput = rotation;
     }
 
-    public void OnSprint(InputValue value)
+    public void ToggleSprint()
     {
-        if (_inputSettings.toggleSprint)
-        {
-            _isSprinting = !_isSprinting;
-        }
-        else
-        {
-            _isSprinting = value.Get<float>() > 0.5F;
-        }
+        _isSprinting = !_isSprinting;
     }
 
-    public void OnJump()
+    public void SetSprintState(bool isSprinting)
+    {
+        _isSprinting = isSprinting;
+    }
+
+    public void Jump()
     {
         _justJumped = true;
     }
 
-    public void OnReload()
+    public void Reload()
     {
         _weaponManager.Reload();
     }
 
-    public void OnCycleWeapon(InputValue value)
+    public void CycleWeapon(WeaponCycleDirection direction)
     {
-        if (value.Get<float>() > 0.0F)
+        if (direction == WeaponCycleDirection.Next)
         {
             _weaponManager.SelectNextWeapon();
         }
         
-        if (value.Get<float>() < 0.0F)
+        if (direction == WeaponCycleDirection.Previous)
         {
             _weaponManager.SelectPreviousWeapon();
         }
     }
 
-    public void OnAim(InputValue value)
+    public void SetAimState(bool isAiming)
     {
-        _isAiming = value.Get<float>() > 0.5F;
+        _isAiming = isAiming;
     }
 
-    public void OnShoot(InputValue value)
+    public void Shoot()
     {
-        _isShooting = value.Get<float>() > 0.5F;
-        if (!_isShooting)
-        {
-            _stoppedShooting = true;
-        }
+        _isShooting = true;
+        _stoppedShooting = false;
     }
 
-    public void OnPause()
+    public void ShootReset()
     {
-        if (!PauseManager.Instance.IsPaused)
-        {
-            Cursor.lockState = CursorLockMode.None;
-            PauseManager.Instance.PauseGame();
-            _playerInput.SwitchCurrentActionMap("Paused");
-        }
-    }
-
-    public void OnUnpause()
-    {
-        if (PauseManager.Instance.IsPaused)
-        {
-            Cursor.lockState = CursorLockMode.Locked;
-            PauseManager.Instance.UnpauseGame();
-            _playerInput.SwitchCurrentActionMap("Gameplay");
-        }
+        _isShooting = false;
+        _stoppedShooting = true;
     }
 }
