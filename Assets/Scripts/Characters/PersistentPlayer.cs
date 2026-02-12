@@ -1,6 +1,13 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
 
+public enum ActiveControls
+{
+    Gameplay,
+    Paused,
+    UI
+}
+
 public class PersistentPlayer : MonoBehaviour
 {
     [Header("Player Settings")]
@@ -13,6 +20,10 @@ public class PersistentPlayer : MonoBehaviour
 
     PlayerInput _playerInput = null;
     PlayerCharacter _character = null;
+
+    static string GAMEPLAY_ACTION_MAP = "Gameplay";
+    static string PAUSED_ACTION_MAP = "Paused";
+    static string UI_ACTION_MAP = "UI";
 
     void Awake()
     {
@@ -30,9 +41,44 @@ public class PersistentPlayer : MonoBehaviour
         _persistentPlayerRuntimeSet.Remove(this);
     }
 
+    /// <summary>
+    /// Set the active controls for this player character.
+    /// </summary>
+    /// <param name="controls"></param>
+    public void SetActiveControls(ActiveControls controls)
+    {
+        switch (controls)
+        {
+        case ActiveControls.Gameplay:
+            _playerInput.SwitchCurrentActionMap(GAMEPLAY_ACTION_MAP);
+            break;
+        case ActiveControls.Paused:
+            _playerInput.SwitchCurrentActionMap(PAUSED_ACTION_MAP);
+            break;
+        case ActiveControls.UI:
+            _playerInput.SwitchCurrentActionMap(UI_ACTION_MAP);
+            break;
+        default:
+            break;
+        }
+    }
+
+    /// <summary>
+    /// Possess a player character to forward the controls.
+    /// </summary>
+    /// <param name="character"></param>
     public void Possess(PlayerCharacter character)
     {
         _character = character;
+    }
+
+    /// <summary>
+    /// Handle a control scheme change (device changed).
+    /// </summary>
+    /// <param name="input"></param>
+    public void OnControlsChanged(PlayerInput input)
+    {
+        Debug.Log($"Controls Changed: {input.currentControlScheme}");
     }
 
     public void OnMove(InputValue value)
@@ -99,7 +145,6 @@ public class PersistentPlayer : MonoBehaviour
         {
             PauseManager.Instance.PauseGame();
             PauseManager.Instance.PauseMenu.OnUnpause += OnUnpause;
-            _playerInput.SwitchCurrentActionMap("Paused");
         }
     }
 
@@ -109,7 +154,6 @@ public class PersistentPlayer : MonoBehaviour
         {
             PauseManager.Instance.UnpauseGame();
             PauseManager.Instance.PauseMenu.OnUnpause -= OnUnpause;
-            _playerInput.SwitchCurrentActionMap("Gameplay");
         }
     }
 }
