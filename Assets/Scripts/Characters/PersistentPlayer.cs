@@ -12,6 +12,7 @@ public class PersistentPlayer : MonoBehaviour
     PersistentPlayerRuntimeSet _persistentPlayerRuntimeSet = null;
 
     PlayerInput _playerInput = null;
+    PlayerCharacter _character = null;
 
     void Awake()
     {
@@ -29,44 +30,67 @@ public class PersistentPlayer : MonoBehaviour
         _persistentPlayerRuntimeSet.Remove(this);
     }
 
+    public void Possess(PlayerCharacter character)
+    {
+        _character = character;
+    }
+
     public void OnMove(InputValue value)
     {
-        //
+        _character.SetMoveDirection(value.Get<Vector2>());
     }
 
     public void OnLook(InputValue value)
     {
-        //
+        Vector2 rotation = value.Get<Vector2>();
+        rotation.y *= _inputSettings.invertYLook ? 1.0F : -1.0F;
+        rotation *= _inputSettings.lookSensitivity;
+
+        _character.SetLookRotation(rotation);
     }
 
     public void OnSprint(InputValue value)
     {
-        //
+        if (_inputSettings.toggleSprint)
+        {
+            _character.ToggleSprint();
+        }
+        else
+        {
+            _character.SetSprintState(value.Get<float>() > 0.5F);
+        }
     }
 
     public void OnJump()
     {
-        //
+        _character.Jump();
     }
 
     public void OnReload()
     {
-        //
+        _character.Reload();
     }
 
     public void OnCycleWeapon(InputValue value)
     {
-        //
+        if (value.Get<float>() > 0.0F)
+        {
+            _character.CycleWeapon(WeaponCycleDirection.Next);
+        }
+        else if (value.Get<float>() < 0.0F)
+        {
+            _character.CycleWeapon(WeaponCycleDirection.Previous);
+        }
     }
 
     public void OnAim(InputValue value)
     {
-        //
+        _character.SetAimState(value.Get<float>() > 0.5F);
     }
 
     public void OnShoot(InputValue value)
     {
-        //
+        _character.SetShootState(value.Get<float>() > 0.5F);
     }
 
     public void OnPause()

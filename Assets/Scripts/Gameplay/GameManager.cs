@@ -51,10 +51,13 @@ public class GameManager : MonoBehaviour
                 spawnTransform = _playerSpawnPoints[Random.Range(0, _playerSpawnPoints.Count)];
             }
 
-            // TODO(nemjit001): Link player character and persistent player
+            // Spawn character
             PlayerCharacter newCharacter = Instantiate(_playerCharacter);
             newCharacter.transform.position = spawnTransform.position;
             newCharacter.transform.rotation = spawnTransform.rotation;
+
+            // Forward player controls
+            player.Possess(newCharacter);
         }
     }
 

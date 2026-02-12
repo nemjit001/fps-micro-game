@@ -232,15 +232,13 @@ public class PlayerCharacter : MonoBehaviour
         _isAiming = isAiming;
     }
 
-    public void Shoot()
+    public void SetShootState(bool isShooting)
     {
-        _isShooting = true;
-        _stoppedShooting = false;
-    }
-
-    public void ShootReset()
-    {
-        _isShooting = false;
-        _stoppedShooting = true;
+        bool wasShooting = _isShooting;
+        _isShooting = isShooting;
+        if (wasShooting && _isShooting != wasShooting)
+        {
+            _stoppedShooting = true;
+        }
     }
 }
