@@ -87,6 +87,7 @@ public class GameManager : MonoBehaviour
     {
         _gameFinished = true;
         yield return new WaitForSecondsRealtime(_gameOverTimeout);
+        PlayerManager.Instance.SetActiveControls(ActiveControls.UI);
         SceneManager.LoadSceneAsync("GameOverScene", LoadSceneMode.Single);
     }
 }

@@ -20,6 +20,7 @@ public class PersistentPlayer : MonoBehaviour
 
     PlayerInput _playerInput = null;
     PlayerCharacter _character = null;
+    ActiveControls _activeControls = ActiveControls.Gameplay;
 
     static string GAMEPLAY_ACTION_MAP = "Gameplay";
     static string PAUSED_ACTION_MAP = "Paused";
@@ -37,6 +38,28 @@ public class PersistentPlayer : MonoBehaviour
         _persistentPlayerRuntimeSet.Remove(this);
     }
 
+    void Update()
+    {
+        // Default to locked cursor, only show cursor if not in gameplay and on mouse & kb
+        // This is kinda hacky but seems to work OK
+        if (_playerInput.currentControlScheme == "Mouse & Keyboard")
+        {
+            if (_activeControls != ActiveControls.Gameplay)
+            {
+                Cursor.lockState = CursorLockMode.None;
+                Cursor.visible = true;
+            }
+            else
+            {
+                Cursor.lockState = CursorLockMode.Locked;
+            }
+        }
+        else
+        {
+            Cursor.lockState = CursorLockMode.Locked;
+        }
+    }
+
     /// <summary>
     /// Set the active controls for this player character.
     /// </summary>
@@ -44,6 +67,7 @@ public class PersistentPlayer : MonoBehaviour
     public void SetActiveControls(ActiveControls controls)
     {
         Debug.Log($"Active Controls Changed: {controls}");
+        _activeControls = controls;
         switch (controls)
         {
         case ActiveControls.Gameplay:
@@ -76,6 +100,7 @@ public class PersistentPlayer : MonoBehaviour
     public void OnControlsChanged(PlayerInput input)
     {
         Debug.Log($"Controls Changed: {input.currentControlScheme}");
+        _playerInput = input;
     }
 
     public void OnMove(InputValue value)
