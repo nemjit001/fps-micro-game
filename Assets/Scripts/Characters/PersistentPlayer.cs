@@ -95,11 +95,21 @@ public class PersistentPlayer : MonoBehaviour
 
     public void OnPause()
     {
-        //
+        if (PauseManager.Instance != null)
+        {
+            PauseManager.Instance.PauseGame();
+            PauseManager.Instance.PauseMenu.OnUnpause += OnUnpause;
+            _playerInput.SwitchCurrentActionMap("Paused");
+        }
     }
 
     public void OnUnpause()
     {
-        //
+        if (PauseManager.Instance != null)
+        {
+            PauseManager.Instance.UnpauseGame();
+            PauseManager.Instance.PauseMenu.OnUnpause -= OnUnpause;
+            _playerInput.SwitchCurrentActionMap("Gameplay");
+        }
     }
 }
