@@ -30,6 +30,14 @@ public class PlayerManager : MonoBehaviour
         InitializePersistentPlayers();
     }
 
+    public void SetActiveControls(ActiveControls controls)
+    {
+        foreach (PersistentPlayer player in _persistentPlayerRuntimeSet.items)
+        {
+            player.SetActiveControls(controls);
+        }
+    }
+
     private void InitializePersistentPlayers()
     {
         // Clean up previous player state
@@ -38,7 +46,8 @@ public class PlayerManager : MonoBehaviour
             Destroy(player.gameObject);
         }
 
-        // Spawn player
+        // Spawn player & set first active controls
         _playerInputManager.JoinPlayer();
+        SetActiveControls(ActiveControls.UI); // We start in UI controls
     }
 }

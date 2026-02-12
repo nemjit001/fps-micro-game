@@ -28,12 +28,8 @@ public class PersistentPlayer : MonoBehaviour
     void Awake()
     {
         _persistentPlayerRuntimeSet.Add(this);
-        DontDestroyOnLoad(this); // Ensure player stays alive for duration of the game
-    }
-
-    void Start()
-    {
         _playerInput = GetComponent<PlayerInput>();
+        DontDestroyOnLoad(this); // Ensure player stays alive for duration of the game
     }
 
     void OnDestroy()
@@ -47,6 +43,7 @@ public class PersistentPlayer : MonoBehaviour
     /// <param name="controls"></param>
     public void SetActiveControls(ActiveControls controls)
     {
+        Debug.Log($"Active Controls Changed: {controls}");
         switch (controls)
         {
         case ActiveControls.Gameplay:
