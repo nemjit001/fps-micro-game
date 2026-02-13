@@ -87,7 +87,6 @@ MonoBehaviour:
   _aimTransitionSpeed: 20
   _defaultFOV: 60
   _aimingFOV: 40
-  _inputSettings: {fileID: 11400000, guid: d2c25151fa7d1c12897639f5dff6f990, type: 2}
 --- !u!114 &1904729959984117187
 MonoBehaviour:
   m_ObjectHideFlags: 0
