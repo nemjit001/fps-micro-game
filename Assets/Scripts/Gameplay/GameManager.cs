@@ -17,9 +17,11 @@ public class GameManager : MonoBehaviour
     [SerializeField]
     List<Transform> _playerSpawnPoints = new List<Transform>();
 
-    [Header("Game Data")]
+    [Header("Runtime Data")]
     [SerializeField]
-    PlayerRuntimeSet _playerRuntimeSet = null;
+    PersistentPlayerRuntimeSet _persistentPlayerRuntimeSet = null;
+    [SerializeField]
+    PlayerCharacterRuntimeSet _playerCharacterRuntimeSet = null;
     [SerializeField]
     WaveManager _waveManager = null;
 
@@ -27,7 +29,7 @@ public class GameManager : MonoBehaviour
 
     void Start()
     {
-        SpawnPlayer();
+        SpawnPlayers();
     }
 
     void Update()
@@ -39,17 +41,24 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    private void SpawnPlayer()
+    private void SpawnPlayers()
     {
-        Transform spawnTransform = transform;
-        if (_playerSpawnPoints.Count > 0)
+        foreach (PersistentPlayer player in _persistentPlayerRuntimeSet.items)
         {
-            spawnTransform = _playerSpawnPoints[Random.Range(0, _playerSpawnPoints.Count)];
-        }
+            Transform spawnTransform = transform;
+            if (_playerSpawnPoints.Count > 0)
+            {
+                spawnTransform = _playerSpawnPoints[Random.Range(0, _playerSpawnPoints.Count)];
+            }
 
-        PlayerCharacter newCharacter = Instantiate(_playerCharacter);
-        newCharacter.transform.position = spawnTransform.position;
-        newCharacter.transform.rotation = spawnTransform.rotation;
+            // Spawn character
+            PlayerCharacter newCharacter = Instantiate(_playerCharacter);
+            newCharacter.transform.position = spawnTransform.position;
+            newCharacter.transform.rotation = spawnTransform.rotation;
+
+            // Forward player controls
+            player.Possess(newCharacter);
+        }
     }
 
     private void SetCompletionState()
@@ -59,7 +68,7 @@ public class GameManager : MonoBehaviour
             return;
         }
 
-        if (_playerRuntimeSet.items.Count != 0)
+        if (_playerCharacterRuntimeSet.items.Count != 0)
         {
             _gameCompletionState.completionCondition = CompletionCondition.Win;
         }
@@ -71,13 +80,14 @@ public class GameManager : MonoBehaviour
 
     private bool IsGameOver()
     {
-        return _waveManager.WavesFinished() || _playerRuntimeSet.items.Count == 0;
+        return _waveManager.WavesFinished() || _playerCharacterRuntimeSet.items.Count == 0;
     }
 
     private IEnumerator OnGameOverCoroutine()
     {
         _gameFinished = true;
         yield return new WaitForSecondsRealtime(_gameOverTimeout);
+        PlayerManager.Instance.SetActiveControls(ActiveControls.UI);
         SceneManager.LoadSceneAsync("GameOverScene", LoadSceneMode.Single);
     }
 }

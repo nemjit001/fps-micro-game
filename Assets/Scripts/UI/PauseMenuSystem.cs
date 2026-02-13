@@ -15,7 +15,6 @@ public class PauseMenuSystem : MenuSystem
         OpenPauseMenu();
         _pauseMenuUI.OnUnpause += Unpause;
         _pauseMenuUI.OnOpenSettings += OpenSettings;
-
         _settingsMenu.OnLeaveMenu += OpenPauseMenu;
     }
 
@@ -23,7 +22,6 @@ public class PauseMenuSystem : MenuSystem
     {
         _pauseMenuUI.OnUnpause -= Unpause;
         _pauseMenuUI.OnOpenSettings -= OpenSettings;
-
         _settingsMenu.OnLeaveMenu -= OpenPauseMenu;
     }
 

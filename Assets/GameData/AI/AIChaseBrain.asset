@@ -12,5 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a3b83c0d2adc270d780e2ef9ff3844da, type: 3}
   m_Name: AIChaseBrain
   m_EditorClassIdentifier: Assembly-CSharp::AIChaseBrain
-  _playerRuntimeSet: {fileID: 11400000, guid: 30d54eafee55404f180c8c960f576964, type: 2}
+  _playerCharacterRuntimeSet: {fileID: 11400000, guid: 30d54eafee55404f180c8c960f576964, type: 2}
   _targetReachedRadius: 2

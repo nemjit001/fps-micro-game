@@ -33,11 +33,13 @@ public class PauseManager : MonoBehaviour
     {
         Time.timeScale = 0.0F;
         _pauseMenu.Show();
+        PlayerManager.Instance.SetActiveControls(ActiveControls.Paused);
     }
 
     public void UnpauseGame()
     {
         Time.timeScale = 1.0F;
         _pauseMenu.Hide();
+        PlayerManager.Instance.SetActiveControls(ActiveControls.Gameplay);
     }
 }
