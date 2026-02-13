@@ -48,7 +48,9 @@ public class GameManager : MonoBehaviour
             Transform spawnTransform = transform;
             if (_playerSpawnPoints.Count > 0)
             {
-                spawnTransform = _playerSpawnPoints[Random.Range(0, _playerSpawnPoints.Count)];
+                int spawnIdx = Random.Range(0, _playerSpawnPoints.Count);
+                Debug.Log($"Spawn Position {spawnIdx}");
+                spawnTransform = _playerSpawnPoints[spawnIdx];
             }
 
             // Spawn character
