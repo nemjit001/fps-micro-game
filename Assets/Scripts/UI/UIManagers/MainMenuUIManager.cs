@@ -38,7 +38,7 @@ public class MainMenuUIManager : UIManager
 
     private void OnPressPlay()
     {
-        SceneManager.LoadSceneAsync("SampleScene", LoadSceneMode.Single);
+        SceneManager.LoadSceneAsync("Gameplay", LoadSceneMode.Single); // FIXME(nemjit001): use asset that stores scene paths
     }
 
     private void OnPressSettings()
