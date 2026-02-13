@@ -12,4 +12,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1468fffc95802a61b87c6b17b4d6bfe8, type: 3}
   m_Name: RifleAmmo
   m_EditorClassIdentifier: Assembly-CSharp::AmmoType
-  maxHeldAmmo: 120
+  maxHeldAmmo: 60
